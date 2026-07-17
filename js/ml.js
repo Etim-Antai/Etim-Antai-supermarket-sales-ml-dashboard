@@ -3,7 +3,8 @@
 // =========================================
 
 // Change this when you deploy to Render
-const API_URL = "http://127.0.0.1:5000/predict";
+// Render Backend API
+const API_URL = "https://etim-antai-supermarket-sales-ml-dashboard.onrender.com/predict";
 
 // =========================================
 // Draw Charts when page loads
