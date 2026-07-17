@@ -260,7 +260,11 @@
                 EXECUTIVE SUMMARY
 ====================================================== -->
 
-<section class="dashboard-section">
+<!-- ===================================================
+                EXECUTIVE OVERVIEW
+=================================================== -->
+
+<section class="dashboard-section" id="dashboard">
 
     <div class="section-header">
 
@@ -269,210 +273,147 @@
             <h2>Executive Overview</h2>
 
             <p>
-                Key business performance indicators generated from the supermarket sales dataset.
+                Key performance indicators generated directly from the supermarket
+                sales dataset.
             </p>
 
         </div>
 
-        <div class="last-update">
-
-            <i class="bi bi-clock-history"></i>
-
-            Last Updated:
-            <span id="lastUpdated">Live</span>
-
-        </div>
-
     </div>
+
+
+    <!-- ================= KPI GRID ================= -->
 
     <div class="kpi-grid">
 
-        <!-- Total Sales -->
-
         <div class="kpi-card">
 
-            <div class="kpi-top">
+            <div class="kpi-icon sales">
 
-                <div class="kpi-icon sales">
-
-                    <i class="bi bi-cash-stack"></i>
-
-                </div>
-
-                <span class="trend up">
-
-                    <i class="bi bi-arrow-up"></i>
-
-                    12.4%
-
-                </span>
+                <i class="bi bi-currency-dollar"></i>
 
             </div>
 
-            <h6>Total Sales</h6>
+            <div class="kpi-body">
 
-            <h2 id="totalSales">$0</h2>
+                <span>Total Sales</span>
 
-            <small>Total revenue generated</small>
+                <h2 id="totalSales">$0</h2>
+
+                <small>Total revenue generated</small>
+
+            </div>
 
         </div>
 
-        <!-- Transactions -->
 
         <div class="kpi-card">
 
-            <div class="kpi-top">
+            <div class="kpi-icon transactions">
 
-                <div class="kpi-icon transaction">
-
-                    <i class="bi bi-cart-check"></i>
-
-                </div>
-
-                <span class="trend up">
-
-                    <i class="bi bi-arrow-up"></i>
-
-                    8.1%
-
-                </span>
+                <i class="bi bi-receipt"></i>
 
             </div>
 
-            <h6>Transactions</h6>
+            <div class="kpi-body">
 
-            <h2 id="transactions">0</h2>
+                <span>Transactions</span>
 
-            <small>Total completed purchases</small>
+                <h2 id="transactions">0</h2>
+
+                <small>Total completed purchases</small>
+
+            </div>
 
         </div>
 
-        <!-- Gross Income -->
 
         <div class="kpi-card">
 
-            <div class="kpi-top">
+            <div class="kpi-icon profit">
 
-                <div class="kpi-icon income">
-
-                    <i class="bi bi-graph-up-arrow"></i>
-
-                </div>
-
-                <span class="trend up">
-
-                    <i class="bi bi-arrow-up"></i>
-
-                    6.8%
-
-                </span>
+                <i class="bi bi-cash-stack"></i>
 
             </div>
 
-            <h6>Gross Income</h6>
+            <div class="kpi-body">
 
-            <h2 id="grossIncome">$0</h2>
+                <span>Gross Income</span>
 
-            <small>Business profitability</small>
+                <h2 id="grossIncome">$0</h2>
+
+                <small>Total business profit</small>
+
+            </div>
 
         </div>
 
-        <!-- Rating -->
 
         <div class="kpi-card">
 
-            <div class="kpi-top">
+            <div class="kpi-icon rating">
 
-                <div class="kpi-icon rating">
-
-                    <i class="bi bi-star-fill"></i>
-
-                </div>
-
-                <span class="trend neutral">
-
-                    <i class="bi bi-dash"></i>
-
-                    Stable
-
-                </span>
+                <i class="bi bi-star-fill"></i>
 
             </div>
 
-            <h6>Average Rating</h6>
+            <div class="kpi-body">
 
-            <h2 id="avgRating">0</h2>
+                <span>Average Rating</span>
 
-            <small>Customer satisfaction</small>
+                <h2 id="avgRating">0</h2>
+
+                <small>Customer satisfaction</small>
+
+            </div>
 
         </div>
 
-        <!-- Quantity -->
 
         <div class="kpi-card">
 
-            <div class="kpi-top">
+            <div class="kpi-icon quantity">
 
-                <div class="kpi-icon quantity">
-
-                    <i class="bi bi-box-seam"></i>
-
-                </div>
-
-                <span class="trend up">
-
-                    <i class="bi bi-arrow-up"></i>
-
-                    4.5%
-
-                </span>
+                <i class="bi bi-box-seam"></i>
 
             </div>
 
-            <h6>Items Sold</h6>
+            <div class="kpi-body">
 
-            <h2 id="totalQuantity">0</h2>
+                <span>Total Quantity</span>
 
-            <small>Total quantity sold</small>
+                <h2 id="totalQuantity">0</h2>
+
+                <small>Total items sold</small>
+
+            </div>
 
         </div>
 
-        <!-- Average Sale -->
 
         <div class="kpi-card">
 
-            <div class="kpi-top">
+            <div class="kpi-icon average">
 
-                <div class="kpi-icon average">
-
-                    <i class="bi bi-currency-dollar"></i>
-
-                </div>
-
-                <span class="trend down">
-
-                    <i class="bi bi-arrow-down"></i>
-
-                    1.2%
-
-                </span>
+                <i class="bi bi-graph-up"></i>
 
             </div>
 
-            <h6>Average Sale</h6>
+            <div class="kpi-body">
 
-            <h2 id="averageSale">$0</h2>
+                <span>Average Sale</span>
 
-            <small>Revenue per transaction</small>
+                <h2 id="averageSale">$0</h2>
+
+                <small>Average value per transaction</small>
+
+            </div>
 
         </div>
 
     </div>
 
-</section>
-
-
-        <!-- =====================================================
+</section>        <!-- =====================================================
                 EXECUTIVE ANALYTICS
 ====================================================== -->
 
