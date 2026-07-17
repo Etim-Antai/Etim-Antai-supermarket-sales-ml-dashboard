@@ -677,14 +677,13 @@ img{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    grid-template-columns:repeat(6,1fr);
 
-    gap:24px;
+    gap:18px;
 
-    margin-bottom:45px;
+    margin-bottom:40px;
 
 }
-
 
 /*=========================================================
     KPI CARD
@@ -706,7 +705,7 @@ img{
 
     border-radius:22px;
 
-    padding:28px;
+    padding:20px;
 
     transition:all .35s ease;
 
@@ -788,9 +787,9 @@ img{
 
 .kpi-icon{
 
-    width:58px;
+    width:48px;
 
-    height:58px;
+    height:48px;
 
     border-radius:16px;
 
@@ -802,7 +801,7 @@ img{
 
     margin-bottom:22px;
 
-    font-size:24px;
+    font-size:20px;
 
     background:rgba(79,70,229,.18);
 
@@ -862,7 +861,7 @@ img{
 
     color:var(--muted);
 
-    font-size:14px;
+    font-size:13px;
 
     font-weight:600;
 
@@ -877,7 +876,7 @@ img{
 
 .kpi-card h2{
 
-    font-size:2.2rem;
+    font-size:1.9rem;
 
     font-weight:800;
 
@@ -900,9 +899,9 @@ img{
 
     align-items:center;
 
-    margin-top:20px;
+    margin-top:12px;
 
-    font-size:13px;
+    font-size:12px;
 
 }
 
@@ -1047,6 +1046,36 @@ img{
 .metrics-section{
 
     margin-bottom:60px;
+
+}
+
+@media (max-width:1400px){
+
+    .kpi-grid{
+
+        grid-template-columns:repeat(3,1fr);
+
+    }
+
+}
+
+@media (max-width:992px){
+
+    .kpi-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .kpi-grid{
+
+        grid-template-columns:1fr;
+
+    }
 
 }
 
