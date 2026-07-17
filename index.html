@@ -256,10 +256,7 @@
     </div>
 
 </section>
-        <!-- =====================================================
-                EXECUTIVE SUMMARY
-====================================================== -->
-
+        
 <!-- ===================================================
                 EXECUTIVE OVERVIEW
 =================================================== -->
@@ -413,7 +410,7 @@
 
     </div>
 
-</section>        <!-- =====================================================
+</section>     <!-- =====================================================
                 EXECUTIVE ANALYTICS
 ====================================================== -->
 
@@ -426,37 +423,45 @@
             <h2>Executive Analytics</h2>
 
             <p>
-                High-level visual summary of sales performance across the business.
+                Explore the key business performance indicators across sales,
+                branches, products and customer payments.
             </p>
 
         </div>
 
     </div>
 
-    <!-- ================= Sales Trend ================= -->
+    <!-- ================= SALES TREND ================= -->
 
-    <div class="chart-card large-chart">
+    <div class="chart-card featured-chart">
 
         <div class="chart-header">
 
             <div>
 
                 <h4>
+
                     <i class="bi bi-graph-up-arrow"></i>
+
                     Sales Trend
+
                 </h4>
 
                 <small>
-                    Overall sales performance over time
+
+                    Revenue performance over time
+
                 </small>
 
             </div>
 
-            <button class="btn btn-sm btn-outline-light">
+            <a href="pages/sales.html" class="chart-link">
 
-                <i class="bi bi-download"></i>
+                View Details
 
-            </button>
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
 
         </div>
 
@@ -464,39 +469,9 @@
 
     </div>
 
-    <!-- ================= 2 Column Grid ================= -->
+    <!-- ================= GRID ================= -->
 
     <div class="chart-grid">
-
-        <!-- Sales by Product -->
-
-        <div class="chart-card">
-
-            <div class="chart-header">
-
-                <div>
-
-                    <h4>
-
-                        <i class="bi bi-box-seam"></i>
-
-                        Sales by Product
-
-                    </h4>
-
-                    <small>
-                        Best-performing product lines
-                    </small>
-
-                </div>
-
-            </div>
-
-            <div id="salesByProduct"></div>
-
-        </div>
-
-        <!-- Sales by Branch -->
 
         <div class="chart-card">
 
@@ -508,15 +483,23 @@
 
                         <i class="bi bi-shop"></i>
 
-                        Sales by Branch
+                        Branch Performance
 
                     </h4>
 
                     <small>
-                        Revenue contribution by branch
+
+                        Revenue by branch
+
                     </small>
 
                 </div>
+
+                <a href="pages/branches.html" class="chart-link">
+
+                    View
+
+                </a>
 
             </div>
 
@@ -524,7 +507,39 @@
 
         </div>
 
-        <!-- Sales by City -->
+        <div class="chart-card">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h4>
+
+                        <i class="bi bi-box-seam"></i>
+
+                        Product Performance
+
+                    </h4>
+
+                    <small>
+
+                        Sales by product line
+
+                    </small>
+
+                </div>
+
+                <a href="pages/products.html" class="chart-link">
+
+                    View
+
+                </a>
+
+            </div>
+
+            <div id="salesByProduct"></div>
+
+        </div>
 
         <div class="chart-card">
 
@@ -536,23 +551,29 @@
 
                         <i class="bi bi-geo-alt"></i>
 
-                        Sales by City
+                        City Performance
 
                     </h4>
 
                     <small>
-                        City-wise sales comparison
+
+                        Revenue by city
+
                     </small>
 
                 </div>
+
+                <a href="pages/branches.html" class="chart-link">
+
+                    View
+
+                </a>
 
             </div>
 
             <div id="salesByCity"></div>
 
         </div>
-
-        <!-- Payment Methods -->
 
         <div class="chart-card">
 
@@ -564,15 +585,23 @@
 
                         <i class="bi bi-credit-card"></i>
 
-                        Payment Distribution
+                        Payment Analysis
 
                     </h4>
 
                     <small>
-                        Preferred payment methods
+
+                        Payment method distribution
+
                     </small>
 
                 </div>
+
+                <a href="pages/payments.html" class="chart-link">
+
+                    View
+
+                </a>
 
             </div>
 
@@ -583,9 +612,8 @@
     </div>
 
 </section>
-
 <!-- =====================================================
-                QUICK FILTERS
+                DASHBOARD FILTERS
 ====================================================== -->
 
 <section class="dashboard-section">
@@ -594,11 +622,17 @@
 
         <div>
 
-            <h2>Dashboard Filters</h2>
+            <h2>
+
+                <i class="bi bi-funnel-fill"></i>
+
+                Dashboard Filters
+
+            </h2>
 
             <p>
 
-                Filter the dashboard to explore specific business segments.
+                Filter the dashboard by branch, city, product line and payment method to explore business performance.
 
             </p>
 
@@ -606,49 +640,54 @@
 
     </div>
 
-    <div class="filters">
+    <div class="filter-toolbar">
 
-        <select id="branchFilter">
+        <div class="filters">
 
-            <option value="">All Branches</option>
+            <select id="branchFilter">
 
-        </select>
+                <option value="">🏬 All Branches</option>
 
-        <select id="cityFilter">
+            </select>
 
-            <option value="">All Cities</option>
+            <select id="cityFilter">
 
-        </select>
+                <option value="">📍 All Cities</option>
 
-        <select id="productFilter">
+            </select>
 
-            <option value="">All Product Lines</option>
+            <select id="productFilter">
 
-        </select>
+                <option value="">📦 All Product Lines</option>
 
-        <select id="paymentFilter">
+            </select>
 
-            <option value="">All Payment Methods</option>
+            <select id="paymentFilter">
 
-        </select>
+                <option value="">💳 All Payment Methods</option>
 
-        <button
-            class="btn btn-outline-light"
-            onclick="resetFilters()">
+            </select>
 
-            <i class="bi bi-arrow-clockwise"></i>
+        </div>
 
-            Reset Filters
+        <div class="filter-actions">
 
-        </button>
+            <button
+                class="btn btn-outline-light"
+                onclick="resetFilters()">
+
+                <i class="bi bi-arrow-clockwise"></i>
+
+                Reset
+
+            </button>
+
+        </div>
 
     </div>
 
-</section>
-
-
-        <!-- =====================================================
-                EXECUTIVE INSIGHTS
+</section>       <!-- =====================================================
+                BUSINESS HIGHLIGHTS
 ====================================================== -->
 
 <section class="dashboard-section">
@@ -657,10 +696,18 @@
 
         <div>
 
-            <h2>Executive Insights</h2>
+            <h2>
+
+                <i class="bi bi-lightbulb-fill"></i>
+
+                Business Highlights
+
+            </h2>
 
             <p>
-                A quick overview of the most important business findings from the current dataset.
+
+                Key insights automatically generated from the supermarket sales dataset.
+
             </p>
 
         </div>
@@ -669,75 +716,107 @@
 
     <div class="insight-grid">
 
+        <!-- Top Product -->
+
         <div class="insight-card">
 
-            <div class="icon-circle">
+            <div class="icon-circle gold">
 
                 <i class="bi bi-trophy-fill"></i>
 
             </div>
 
-            <h4>Top Selling Product</h4>
+            <span class="insight-label">
 
-            <h3 id="topProduct">Loading...</h3>
+                Top Selling Product
 
-            <p>
-                Product line generating the highest revenue.
-            </p>
+            </span>
+
+            <h3 id="topProduct">—</h3>
+
+            <small>
+
+                Highest revenue generating product line
+
+            </small>
 
         </div>
 
+        <!-- Branch -->
+
         <div class="insight-card">
 
-            <div class="icon-circle">
+            <div class="icon-circle blue">
 
                 <i class="bi bi-shop"></i>
 
             </div>
 
-            <h4>Best Performing Branch</h4>
+            <span class="insight-label">
 
-            <h3 id="topBranch">Loading...</h3>
+                Best Performing Branch
 
-            <p>
-                Branch with the strongest sales performance.
-            </p>
+            </span>
+
+            <h3 id="topBranch">—</h3>
+
+            <small>
+
+                Branch with the highest sales revenue
+
+            </small>
 
         </div>
 
+        <!-- City -->
+
         <div class="insight-card">
 
-            <div class="icon-circle">
+            <div class="icon-circle green">
 
                 <i class="bi bi-geo-alt-fill"></i>
 
             </div>
 
-            <h4>Top City</h4>
+            <span class="insight-label">
 
-            <h3 id="topCity">Loading...</h3>
+                Highest Revenue City
 
-            <p>
-                City contributing the highest sales revenue.
-            </p>
+            </span>
+
+            <h3 id="topCity">—</h3>
+
+            <small>
+
+                City contributing the most revenue
+
+            </small>
 
         </div>
 
+        <!-- Payment -->
+
         <div class="insight-card">
 
-            <div class="icon-circle">
+            <div class="icon-circle purple">
 
                 <i class="bi bi-credit-card-fill"></i>
 
             </div>
 
-            <h4>Preferred Payment</h4>
+            <span class="insight-label">
 
-            <h3 id="topPayment">Loading...</h3>
+                Preferred Payment Method
 
-            <p>
-                Most frequently used payment method.
-            </p>
+            </span>
+
+            <h3 id="topPayment">—</h3>
+
+            <small>
+
+                Most frequently used payment option
+
+            </small>
 
         </div>
 
@@ -745,59 +824,9 @@
 
 </section>
 
-<!-- =====================================================
-                TOP PRODUCTS TABLE
-====================================================== -->
 
-<section class="dashboard-section">
 
-    <div class="section-header">
-
-        <div>
-
-            <h2>Top Performing Products</h2>
-
-            <p>
-                Highest revenue generating product lines.
-            </p>
-
-        </div>
-
-    </div>
-
-    <div class="chart-card">
-
-        <table class="table table-dark table-hover align-middle mb-0">
-
-            <thead>
-
-                <tr>
-
-                    <th>#</th>
-
-                    <th>Product Line</th>
-
-                    <th>Total Sales</th>
-
-                    <th>Quantity Sold</th>
-
-                    <th>Average Rating</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="topProductsTable">
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
+ <!-- =====================================================
                 EXPLORE MORE ANALYTICS
 ====================================================== -->
 
@@ -807,10 +836,18 @@
 
         <div>
 
-            <h2>Explore Detailed Analytics</h2>
+            <h2>
+
+                <i class="bi bi-grid-3x3-gap-fill"></i>
+
+                Explore More Analytics
+
+            </h2>
 
             <p>
-                Navigate to dedicated analytics pages for deeper business insights.
+
+                Dive deeper into different aspects of the business using dedicated analytics pages.
+
             </p>
 
         </div>
@@ -827,21 +864,7 @@
 
             <p>
 
-                Monthly trends, hourly sales, growth analysis and forecasting.
-
-            </p>
-
-        </a>
-
-        <a href="pages/customers.html" class="analytics-card">
-
-            <i class="bi bi-people-fill"></i>
-
-            <h4>Customer Analytics</h4>
-
-            <p>
-
-                Customer behaviour, demographics and satisfaction insights.
+                Analyze monthly trends, hourly sales, growth patterns and performance metrics.
 
             </p>
 
@@ -855,7 +878,7 @@
 
             <p>
 
-                Product performance, profitability and inventory insights.
+                Explore product performance, profitability and inventory insights.
 
             </p>
 
@@ -869,13 +892,14 @@
 
             <p>
 
-                Compare sales performance across different business branches.
+                Compare branch performance, revenue and customer activity.
 
             </p>
 
         </a>
 
-        <a href="pages/machine-learning.html" class="analytics-card featured-card">
+        <a href="pages/machine-learning.html"
+           class="analytics-card featured-card">
 
             <i class="bi bi-cpu-fill"></i>
 
@@ -900,78 +924,47 @@
 </section>
 
 <!-- =====================================================
-                ABOUT PROJECT
+                    CALL TO ACTION
 ====================================================== -->
 
-<section class="dashboard-section" id="about">
+<section class="dashboard-section">
 
-    <div class="chart-card">
+    <div class="chart-card text-center">
 
         <h2>
 
-            About This Project
+            Interested in this Project?
 
         </h2>
 
-        <p>
+        <p class="mt-3">
 
-            This Retail Sales Intelligence Dashboard was developed as a portfolio project
-            to demonstrate practical Business Intelligence, Data Analytics and Machine Learning
-            skills using modern web technologies.
+            Explore the source code, review the implementation, or connect with me
+            to discuss Business Intelligence, Data Analytics and Machine Learning.
 
         </p>
 
-        <div class="row mt-4">
+        <div class="mt-4">
 
-            <div class="col-md-6">
+            <a href="https://github.com/Etim-Antai/Etim-Antai-supermarket-sales-ml-dashboard"
+               target="_blank"
+               class="btn btn-primary me-3">
 
-                <h5>Technologies Used</h5>
+                <i class="bi bi-github"></i>
 
-                <ul>
+                View Source Code
 
-                    <li>HTML5</li>
+            </a>
 
-                    <li>CSS3</li>
+            <a href="https://www.linkedin.com/in/YOUR-LINKEDIN/"
+               target="_blank"
+               class="btn btn-outline-light">
 
-                    <li>JavaScript</li>
+                <i class="bi bi-linkedin"></i>
 
-                    <li>Bootstrap 5</li>
+                Connect on LinkedIn
 
-                    <li>Plotly.js</li>
-
-                    <li>Papa Parse</li>
-
-                    <li>Python</li>
-
-                    <li>Flask API</li>
-
-                    <li>Scikit-learn</li>
-
-                </ul>
-
-            </div>
-
-            <div class="col-md-6">
-
-                <h5>Features</h5>
-
-                <ul>
-
-                    <li>Interactive Dashboard</li>
-
-                    <li>Dynamic KPI Cards</li>
-
-                    <li>Interactive Charts</li>
-
-                    <li>Advanced Filtering</li>
-
-                    <li>Machine Learning Prediction</li>
-
-                    <li>Responsive Design</li>
-
-                </ul>
-
-            </div>
+            </a>
 
         </div>
 
@@ -979,7 +972,7 @@
 
 </section>
 
-        <!-- =====================================================
+<!-- =====================================================
                     FOOTER
 ====================================================== -->
 
@@ -997,86 +990,13 @@
 
         <p>
 
-            Interactive Business Intelligence Dashboard developed with
-            HTML, CSS, JavaScript, Plotly, Flask and Machine Learning.
+            Built with HTML, CSS, JavaScript, Plotly, Python, Flask and Machine Learning.
 
         </p>
 
     </div>
 
-    <div class="footer-center">
-
-        <h6>Quick Links</h6>
-
-        <ul>
-
-            <li>
-
-                <a href="index.html">
-
-                    Overview
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="pages/sales.html">
-
-                    Sales Analytics
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="pages/customers.html">
-
-                    Customer Analytics
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="pages/products.html">
-
-                    Product Analytics
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="pages/branches.html">
-
-                    Branch Analytics
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="pages/machine-learning.html">
-
-                    Machine Learning
-
-                </a>
-
-            </li>
-
-        </ul>
-
-    </div>
-
     <div class="footer-right">
-
-        <h6>Connect</h6>
 
         <div class="social-icons">
 
@@ -1087,7 +1007,7 @@
 
             </a>
 
-            <a href="https://linkedin.com/in/YOUR-LINKEDIN"
+            <a href="https://www.linkedin.com/in/YOUR-LINKEDIN/"
                target="_blank">
 
                 <i class="bi bi-linkedin"></i>
@@ -1117,65 +1037,24 @@
 </button>
 
 <!-- ==========================================
-            LOADING SCREEN
-========================================== -->
-
-<div id="loader">
-
-    <div class="spinner-border text-primary"
-         role="status">
-
-    </div>
-
-    <p>
-
-        Loading Dashboard...
-
-    </p>
-
-</div>
-
-</main>
-
-</div>
-
-<!-- ==========================================
             JAVASCRIPT
 ========================================== -->
 
 <script src="js/charts.js"></script>
-
 <script src="js/filters.js"></script>
-
 <script src="js/app.js"></script>
 
 <script>
 
-document.addEventListener("DOMContentLoaded",()=>{
+const topBtn = document.getElementById("backToTop");
 
-    const loader=document.getElementById("loader");
+window.addEventListener("scroll", () => {
 
-    window.setTimeout(()=>{
-
-        loader.style.opacity="0";
-
-        loader.style.visibility="hidden";
-
-    },900);
-
-});
-
-const topBtn=document.getElementById("backToTop");
-
-window.addEventListener("scroll",()=>{
-
-    if(window.scrollY>500){
+    if(window.scrollY > 500){
 
         topBtn.classList.add("show");
 
-    }
-
-    else{
+    }else{
 
         topBtn.classList.remove("show");
 
@@ -1183,7 +1062,7 @@ window.addEventListener("scroll",()=>{
 
 });
 
-topBtn.onclick=function(){
+topBtn.onclick = function(){
 
     window.scrollTo({
 
