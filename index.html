@@ -3,107 +3,1096 @@
 
 <head>
 
-    <!-- =========================================
-         META
-    ========================================== -->
-
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Retail Business Intelligence & Sales Analytics Platform
-    </title>
+    <title>Retail Sales Intelligence Dashboard</title>
 
-    <meta name="description"
-        content="Interactive Business Intelligence & Machine Learning Dashboard built with Python, Flask, Plotly, JavaScript and Scikit-learn.">
-
-    <meta name="author" content="Engr. Etim Antai">
-
-    <!-- =========================================
-         GOOGLE FONTS
-    ========================================== -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
-    <!-- =========================================
-         BOOTSTRAP
-    ========================================== -->
-
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- =========================================
-         BOOTSTRAP ICONS
-    ========================================== -->
-
+    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- =========================================
-         PLOTLY
-    ========================================== -->
-
+    <!-- Plotly -->
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 
-    <!-- =========================================
-         PAPAPARSE
-    ========================================== -->
-
+    <!-- Papa Parse -->
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 
-    <!-- =========================================
-         CUSTOM CSS
-    ========================================== -->
-
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 
 </head>
-<body><div class="wrapper">
 
-    <!-- ================= SIDEBAR ================= -->
+<body>
+
+<div class="wrapper">
+
+    <!-- ==========================================
+                    SIDEBAR
+    =========================================== -->
 
     <aside class="sidebar">
 
-        <div class="sidebar-header">
+        <div class="logo">
 
-            <div class="brand">
+            <div class="logo-icon">
 
-                <div class="brand-icon">
-                    <i class="bi bi-bar-chart-fill"></i>
+                <i class="bi bi-bar-chart-line-fill"></i>
+
+            </div>
+
+            <h2>Retail BI</h2>
+
+            <span>Analytics Platform</span>
+
+        </div>
+
+        <nav>
+
+            <ul class="menu">
+
+                <li class="active">
+                    <a href="index.html">
+                        <i class="bi bi-speedometer2"></i>
+                        <span>Overview</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="pages/sales.html">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <span>Sales Analytics</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="pages/customers.html">
+                        <i class="bi bi-people-fill"></i>
+                        <span>Customer Analytics</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="pages/products.html">
+                        <i class="bi bi-box-seam"></i>
+                        <span>Product Analytics</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="pages/branches.html">
+                        <i class="bi bi-shop"></i>
+                        <span>Branch Analytics</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="pages/machine-learning.html">
+                        <i class="bi bi-cpu"></i>
+                        <span>Machine Learning</span>
+
+                        <span class="badge bg-success ms-auto">
+                            AI
+                        </span>
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#about">
+                        <i class="bi bi-info-circle"></i>
+                        <span>About Project</span>
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </aside>
+
+    <!-- ==========================================
+                    MAIN CONTENT
+    =========================================== -->
+
+    <main class="content">
+
+        <!-- =====================================================
+                    HERO SECTION
+====================================================== -->
+
+<section class="hero-header">
+
+    <div class="hero-left">
+
+        <span class="hero-badge">
+
+            <i class="bi bi-stars"></i>
+
+            Retail Analytics Platform
+
+        </span>
+
+        <h1>
+
+            Retail Sales Intelligence Dashboard
+
+        </h1>
+
+        <p>
+
+            A modern Business Intelligence dashboard built to analyze retail
+            sales performance, customer behaviour and business trends.
+            This project combines interactive data visualization with
+            Machine Learning to deliver actionable business insights.
+
+        </p>
+
+        <div class="hero-tech">
+
+            <span><i class="bi bi-filetype-html"></i> HTML5</span>
+
+            <span><i class="bi bi-filetype-css"></i> CSS3</span>
+
+            <span><i class="bi bi-filetype-js"></i> JavaScript</span>
+
+            <span><i class="bi bi-bar-chart-fill"></i> Plotly</span>
+
+            <span><i class="bi bi-bootstrap-fill"></i> Bootstrap</span>
+
+            <span><i class="bi bi-cpu-fill"></i> Flask API</span>
+
+            <span><i class="bi bi-robot"></i> Machine Learning</span>
+
+        </div>
+
+        <div class="hero-buttons">
+
+            <a href="https://github.com/Etim-Antai/Etim-Antai-supermarket-sales-ml-dashboard"
+               target="_blank"
+               class="btn btn-dark">
+
+                <i class="bi bi-github"></i>
+
+                View Source
+
+            </a>
+
+            <a href="https://www.linkedin.com/in/YOUR-LINKEDIN/"
+               target="_blank"
+               class="btn btn-primary">
+
+                <i class="bi bi-linkedin"></i>
+
+                LinkedIn
+
+            </a>
+
+            <a href="pages/machine-learning.html"
+               class="btn btn-success">
+
+                <i class="bi bi-cpu"></i>
+
+                Sales Predictor
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-right">
+
+        <div class="hero-card">
+
+            <div class="hero-card-header">
+
+                <h5>
+
+                    Dashboard Overview
+
+                </h5>
+
+                <span class="badge bg-success">
+
+                    LIVE
+
+                </span>
+
+            </div>
+
+            <div class="hero-card-body">
+
+                <div class="mini-metric">
+
+                    <span>Total Records</span>
+
+                    <strong>1,000</strong>
+
                 </div>
 
-                <div class="brand-text">
+                <div class="mini-metric">
 
-                    <h3>Retail BI</h3>
+                    <span>Branches</span>
 
-                    <small>Analytics Platform</small>
+                    <strong>3</strong>
+
+                </div>
+
+                <div class="mini-metric">
+
+                    <span>Product Lines</span>
+
+                    <strong>6</strong>
+
+                </div>
+
+                <div class="mini-metric">
+
+                    <span>Customer Types</span>
+
+                    <strong>2</strong>
+
+                </div>
+
+                <div class="mini-metric">
+
+                    <span>Prediction Model</span>
+
+                    <strong>Random Forest</strong>
 
                 </div>
 
             </div>
 
-            <button class="sidebar-toggle">
+        </div>
 
-                <i class="bi bi-list"></i>
+    </div>
+
+</section>
+
+
+        <!-- =====================================================
+                EXECUTIVE SUMMARY
+====================================================== -->
+
+<section class="dashboard-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Executive Overview</h2>
+
+            <p>
+                Key business performance indicators generated from the supermarket sales dataset.
+            </p>
+
+        </div>
+
+        <div class="last-update">
+
+            <i class="bi bi-clock-history"></i>
+
+            Last Updated:
+            <span id="lastUpdated">Live</span>
+
+        </div>
+
+    </div>
+
+    <div class="kpi-grid">
+
+        <!-- Total Sales -->
+
+        <div class="kpi-card">
+
+            <div class="kpi-top">
+
+                <div class="kpi-icon sales">
+
+                    <i class="bi bi-cash-stack"></i>
+
+                </div>
+
+                <span class="trend up">
+
+                    <i class="bi bi-arrow-up"></i>
+
+                    12.4%
+
+                </span>
+
+            </div>
+
+            <h6>Total Sales</h6>
+
+            <h2 id="totalSales">$0</h2>
+
+            <small>Total revenue generated</small>
+
+        </div>
+
+        <!-- Transactions -->
+
+        <div class="kpi-card">
+
+            <div class="kpi-top">
+
+                <div class="kpi-icon transaction">
+
+                    <i class="bi bi-cart-check"></i>
+
+                </div>
+
+                <span class="trend up">
+
+                    <i class="bi bi-arrow-up"></i>
+
+                    8.1%
+
+                </span>
+
+            </div>
+
+            <h6>Transactions</h6>
+
+            <h2 id="transactions">0</h2>
+
+            <small>Total completed purchases</small>
+
+        </div>
+
+        <!-- Gross Income -->
+
+        <div class="kpi-card">
+
+            <div class="kpi-top">
+
+                <div class="kpi-icon income">
+
+                    <i class="bi bi-graph-up-arrow"></i>
+
+                </div>
+
+                <span class="trend up">
+
+                    <i class="bi bi-arrow-up"></i>
+
+                    6.8%
+
+                </span>
+
+            </div>
+
+            <h6>Gross Income</h6>
+
+            <h2 id="grossIncome">$0</h2>
+
+            <small>Business profitability</small>
+
+        </div>
+
+        <!-- Rating -->
+
+        <div class="kpi-card">
+
+            <div class="kpi-top">
+
+                <div class="kpi-icon rating">
+
+                    <i class="bi bi-star-fill"></i>
+
+                </div>
+
+                <span class="trend neutral">
+
+                    <i class="bi bi-dash"></i>
+
+                    Stable
+
+                </span>
+
+            </div>
+
+            <h6>Average Rating</h6>
+
+            <h2 id="avgRating">0</h2>
+
+            <small>Customer satisfaction</small>
+
+        </div>
+
+        <!-- Quantity -->
+
+        <div class="kpi-card">
+
+            <div class="kpi-top">
+
+                <div class="kpi-icon quantity">
+
+                    <i class="bi bi-box-seam"></i>
+
+                </div>
+
+                <span class="trend up">
+
+                    <i class="bi bi-arrow-up"></i>
+
+                    4.5%
+
+                </span>
+
+            </div>
+
+            <h6>Items Sold</h6>
+
+            <h2 id="totalQuantity">0</h2>
+
+            <small>Total quantity sold</small>
+
+        </div>
+
+        <!-- Average Sale -->
+
+        <div class="kpi-card">
+
+            <div class="kpi-top">
+
+                <div class="kpi-icon average">
+
+                    <i class="bi bi-currency-dollar"></i>
+
+                </div>
+
+                <span class="trend down">
+
+                    <i class="bi bi-arrow-down"></i>
+
+                    1.2%
+
+                </span>
+
+            </div>
+
+            <h6>Average Sale</h6>
+
+            <h2 id="averageSale">$0</h2>
+
+            <small>Revenue per transaction</small>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- =====================================================
+                EXECUTIVE ANALYTICS
+====================================================== -->
+
+<section class="dashboard-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Executive Analytics</h2>
+
+            <p>
+                High-level visual summary of sales performance across the business.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ================= Sales Trend ================= -->
+
+    <div class="chart-card large-chart">
+
+        <div class="chart-header">
+
+            <div>
+
+                <h4>
+                    <i class="bi bi-graph-up-arrow"></i>
+                    Sales Trend
+                </h4>
+
+                <small>
+                    Overall sales performance over time
+                </small>
+
+            </div>
+
+            <button class="btn btn-sm btn-outline-light">
+
+                <i class="bi bi-download"></i>
 
             </button>
 
         </div>
 
-        <hr>
+        <div id="salesTrend"></div>
 
-        <ul class="menu">
+    </div>
 
-            <li class="active">
+    <!-- ================= 2 Column Grid ================= -->
 
-                <a href="#dashboard">
+    <div class="chart-grid">
 
-                    <i class="bi bi-speedometer2"></i>
+        <!-- Sales by Product -->
 
-                    <span>Overview</span>
+        <div class="chart-card">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h4>
+
+                        <i class="bi bi-box-seam"></i>
+
+                        Sales by Product
+
+                    </h4>
+
+                    <small>
+                        Best-performing product lines
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div id="salesByProduct"></div>
+
+        </div>
+
+        <!-- Sales by Branch -->
+
+        <div class="chart-card">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h4>
+
+                        <i class="bi bi-shop"></i>
+
+                        Sales by Branch
+
+                    </h4>
+
+                    <small>
+                        Revenue contribution by branch
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div id="salesByBranch"></div>
+
+        </div>
+
+        <!-- Sales by City -->
+
+        <div class="chart-card">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h4>
+
+                        <i class="bi bi-geo-alt"></i>
+
+                        Sales by City
+
+                    </h4>
+
+                    <small>
+                        City-wise sales comparison
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div id="salesByCity"></div>
+
+        </div>
+
+        <!-- Payment Methods -->
+
+        <div class="chart-card">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h4>
+
+                        <i class="bi bi-credit-card"></i>
+
+                        Payment Distribution
+
+                    </h4>
+
+                    <small>
+                        Preferred payment methods
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div id="paymentMethods"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+                QUICK FILTERS
+====================================================== -->
+
+<section class="dashboard-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Dashboard Filters</h2>
+
+            <p>
+
+                Filter the dashboard to explore specific business segments.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="filters">
+
+        <select id="branchFilter">
+
+            <option value="">All Branches</option>
+
+        </select>
+
+        <select id="cityFilter">
+
+            <option value="">All Cities</option>
+
+        </select>
+
+        <select id="productFilter">
+
+            <option value="">All Product Lines</option>
+
+        </select>
+
+        <select id="paymentFilter">
+
+            <option value="">All Payment Methods</option>
+
+        </select>
+
+        <button
+            class="btn btn-outline-light"
+            onclick="resetFilters()">
+
+            <i class="bi bi-arrow-clockwise"></i>
+
+            Reset Filters
+
+        </button>
+
+    </div>
+
+</section>
+
+
+        <!-- =====================================================
+                EXECUTIVE INSIGHTS
+====================================================== -->
+
+<section class="dashboard-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Executive Insights</h2>
+
+            <p>
+                A quick overview of the most important business findings from the current dataset.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="insight-grid">
+
+        <div class="insight-card">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-trophy-fill"></i>
+
+            </div>
+
+            <h4>Top Selling Product</h4>
+
+            <h3 id="topProduct">Loading...</h3>
+
+            <p>
+                Product line generating the highest revenue.
+            </p>
+
+        </div>
+
+        <div class="insight-card">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-shop"></i>
+
+            </div>
+
+            <h4>Best Performing Branch</h4>
+
+            <h3 id="topBranch">Loading...</h3>
+
+            <p>
+                Branch with the strongest sales performance.
+            </p>
+
+        </div>
+
+        <div class="insight-card">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-geo-alt-fill"></i>
+
+            </div>
+
+            <h4>Top City</h4>
+
+            <h3 id="topCity">Loading...</h3>
+
+            <p>
+                City contributing the highest sales revenue.
+            </p>
+
+        </div>
+
+        <div class="insight-card">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-credit-card-fill"></i>
+
+            </div>
+
+            <h4>Preferred Payment</h4>
+
+            <h3 id="topPayment">Loading...</h3>
+
+            <p>
+                Most frequently used payment method.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+                TOP PRODUCTS TABLE
+====================================================== -->
+
+<section class="dashboard-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Top Performing Products</h2>
+
+            <p>
+                Highest revenue generating product lines.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="chart-card">
+
+        <table class="table table-dark table-hover align-middle mb-0">
+
+            <thead>
+
+                <tr>
+
+                    <th>#</th>
+
+                    <th>Product Line</th>
+
+                    <th>Total Sales</th>
+
+                    <th>Quantity Sold</th>
+
+                    <th>Average Rating</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="topProductsTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+                EXPLORE MORE ANALYTICS
+====================================================== -->
+
+<section class="dashboard-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Explore Detailed Analytics</h2>
+
+            <p>
+                Navigate to dedicated analytics pages for deeper business insights.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="analytics-grid">
+
+        <a href="pages/sales.html" class="analytics-card">
+
+            <i class="bi bi-graph-up-arrow"></i>
+
+            <h4>Sales Analytics</h4>
+
+            <p>
+
+                Monthly trends, hourly sales, growth analysis and forecasting.
+
+            </p>
+
+        </a>
+
+        <a href="pages/customers.html" class="analytics-card">
+
+            <i class="bi bi-people-fill"></i>
+
+            <h4>Customer Analytics</h4>
+
+            <p>
+
+                Customer behaviour, demographics and satisfaction insights.
+
+            </p>
+
+        </a>
+
+        <a href="pages/products.html" class="analytics-card">
+
+            <i class="bi bi-box-seam"></i>
+
+            <h4>Product Analytics</h4>
+
+            <p>
+
+                Product performance, profitability and inventory insights.
+
+            </p>
+
+        </a>
+
+        <a href="pages/branches.html" class="analytics-card">
+
+            <i class="bi bi-shop-window"></i>
+
+            <h4>Branch Analytics</h4>
+
+            <p>
+
+                Compare sales performance across different business branches.
+
+            </p>
+
+        </a>
+
+        <a href="pages/machine-learning.html" class="analytics-card featured-card">
+
+            <i class="bi bi-cpu-fill"></i>
+
+            <h4>Machine Learning</h4>
+
+            <p>
+
+                Predict future sales using a trained Random Forest Regression model.
+
+            </p>
+
+            <span class="badge bg-success">
+
+                AI Powered
+
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+                ABOUT PROJECT
+====================================================== -->
+
+<section class="dashboard-section" id="about">
+
+    <div class="chart-card">
+
+        <h2>
+
+            About This Project
+
+        </h2>
+
+        <p>
+
+            This Retail Sales Intelligence Dashboard was developed as a portfolio project
+            to demonstrate practical Business Intelligence, Data Analytics and Machine Learning
+            skills using modern web technologies.
+
+        </p>
+
+        <div class="row mt-4">
+
+            <div class="col-md-6">
+
+                <h5>Technologies Used</h5>
+
+                <ul>
+
+                    <li>HTML5</li>
+
+                    <li>CSS3</li>
+
+                    <li>JavaScript</li>
+
+                    <li>Bootstrap 5</li>
+
+                    <li>Plotly.js</li>
+
+                    <li>Papa Parse</li>
+
+                    <li>Python</li>
+
+                    <li>Flask API</li>
+
+                    <li>Scikit-learn</li>
+
+                </ul>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <h5>Features</h5>
+
+                <ul>
+
+                    <li>Interactive Dashboard</li>
+
+                    <li>Dynamic KPI Cards</li>
+
+                    <li>Interactive Charts</li>
+
+                    <li>Advanced Filtering</li>
+
+                    <li>Machine Learning Prediction</li>
+
+                    <li>Responsive Design</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- =====================================================
+                    FOOTER
+====================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-left">
+
+        <h4>
+
+            <i class="bi bi-bar-chart-line-fill"></i>
+
+            Retail Sales Intelligence Dashboard
+
+        </h4>
+
+        <p>
+
+            Interactive Business Intelligence Dashboard developed with
+            HTML, CSS, JavaScript, Plotly, Flask and Machine Learning.
+
+        </p>
+
+    </div>
+
+    <div class="footer-center">
+
+        <h6>Quick Links</h6>
+
+        <ul>
+
+            <li>
+
+                <a href="index.html">
+
+                    Overview
 
                 </a>
 
@@ -111,11 +1100,9 @@
 
             <li>
 
-                <a href="#sales-analysis">
+                <a href="pages/sales.html">
 
-                    <i class="bi bi-graph-up-arrow"></i>
-
-                    <span>Sales</span>
+                    Sales Analytics
 
                 </a>
 
@@ -123,11 +1110,9 @@
 
             <li>
 
-                <a href="#branch-analysis">
+                <a href="pages/customers.html">
 
-                    <i class="bi bi-buildings"></i>
-
-                    <span>Branches</span>
+                    Customer Analytics
 
                 </a>
 
@@ -135,11 +1120,9 @@
 
             <li>
 
-                <a href="#product-analysis">
+                <a href="pages/products.html">
 
-                    <i class="bi bi-box-seam"></i>
-
-                    <span>Products</span>
+                    Product Analytics
 
                 </a>
 
@@ -147,35 +1130,9 @@
 
             <li>
 
-                <a href="#customer-analysis">
+                <a href="pages/branches.html">
 
-                    <i class="bi bi-people"></i>
-
-                    <span>Customers</span>
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="#payment-analysis">
-
-                    <i class="bi bi-credit-card"></i>
-
-                    <span>Payments</span>
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="#business-insights">
-
-                    <i class="bi bi-lightbulb"></i>
-
-                    <span>Insights</span>
+                    Branch Analytics
 
                 </a>
 
@@ -185,11 +1142,7 @@
 
                 <a href="pages/machine-learning.html">
 
-                    <i class="bi bi-cpu"></i>
-
-                    <span>Machine Learning</span>
-
-                    <span class="badge rounded-pill bg-primary ms-auto">AI</span>
+                    Machine Learning
 
                 </a>
 
@@ -197,65 +1150,31 @@
 
         </ul>
 
-        <div class="sidebar-footer">
+    </div>
 
-            <small>Developed by</small>
+    <div class="footer-right">
 
-            <strong>Engr. Etim Antai</strong>
+        <h6>Connect</h6>
 
-        </div>
-
-    </aside>
-
-    <!-- ================= MAIN CONTENT ================= -->
-
-    <main class="content">
-
-        <section id="dashboard">
-
-            <header class="hero-header">
-
-    <div class="hero-content">
-
-        <span class="hero-badge">
-            Retail Analytics Platform
-        </span>
-
-        <h1>
-            Retail Sales Intelligence Dashboard
-        </h1>
-
-        <p>
-            An interactive Business Intelligence dashboard built with HTML, CSS,
-            JavaScript, Plotly, Flask and Machine Learning for analysing retail
-            sales performance, customer behaviour and predicting future sales.
-        </p>
-
-        <div class="hero-buttons">
+        <div class="social-icons">
 
             <a href="https://github.com/Etim-Antai/Etim-Antai-supermarket-sales-ml-dashboard"
-                target="_blank"
-                class="btn btn-dark">
+               target="_blank">
 
                 <i class="bi bi-github"></i>
-                Source Code
 
             </a>
 
-            <a href="https://www.linkedin.com/in/YOUR-LINK/"
-                target="_blank"
-                class="btn btn-primary">
+            <a href="https://linkedin.com/in/YOUR-LINKEDIN"
+               target="_blank">
 
                 <i class="bi bi-linkedin"></i>
-                LinkedIn
 
             </a>
 
-            <a href="pages/machine-learning.html"
-                class="btn btn-success">
+            <a href="mailto:YOUR_EMAIL">
 
-                <i class="bi bi-cpu"></i>
-                Sales Predictor
+                <i class="bi bi-envelope-fill"></i>
 
             </a>
 
@@ -263,518 +1182,99 @@
 
     </div>
 
-</header>
-        <!-- ================= KPI Cards ================= -->
-
-        <section class="kpi-grid">
-
-            <div class="kpi-card">
-                <h5>Total Sales</h5>
-                <h2 id="totalSales">$0</h2>
-            </div>
-
-            <div class="kpi-card">
-                <h5>Transactions</h5>
-                <h2 id="transactions">0</h2>
-            </div>
-
-            <div class="kpi-card">
-                <h5>Gross Income</h5>
-                <h2 id="grossIncome">$0</h2>
-            </div>
-
-            <div class="kpi-card">
-                <h5>Average Rating</h5>
-                <h2 id="avgRating">0</h2>
-            </div>
-
-            <div class="kpi-card">
-                <h5>Total Quantity</h5>
-                <h2 id="totalQuantity">0</h2>
-            </div>
-
-            <div class="kpi-card">
-                <h5>Average Sale</h5>
-                <h2 id="averageSale">$0</h2>
-            </div>
-
-        </section>
-
-        <!-- ================= Filters ================= -->
-
-        <section class="filters">
-
-            <select id="branchFilter">
-                <option value="">All Branches</option>
-            </select>
-
-            <select id="cityFilter">
-                <option value="">All Cities</option>
-            </select>
-
-            <select id="productFilter">
-                <option value="">All Product Lines</option>
-            </select>
-
-            <select id="paymentFilter">
-                <option value="">All Payment Methods</option>
-            </select>
-
-        </section>
-
-        <!-- ================= Charts ================= -->
-
-        <div class="row">
-
-            <div class="col-lg-8">
-                <div class="chart-card">
-                    <h4>Sales Trend</h4>
-                    <div id="salesTrend"></div>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="chart-card">
-                    <h4>Sales by Branch</h4>
-                    <div id="branchChart"></div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row mt-4">
-
-            <div class="col-lg-6">
-                <div class="chart-card">
-                    <h4>Sales by Product Line</h4>
-                    <div id="productChart"></div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="chart-card">
-                    <h4>Sales by City</h4>
-                    <div id="cityChart"></div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row mt-4">
-
-            <div class="col-lg-6">
-                <div class="chart-card">
-                    <h4>Payment Methods</h4>
-                    <div id="paymentChart"></div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="chart-card">
-                    <h4>Customer Type</h4>
-                    <div id="customerChart"></div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row mt-4">
-
-            <div class="col-lg-6">
-                <div class="chart-card">
-                    <h4>Gender Distribution</h4>
-                    <div id="genderChart"></div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="chart-card">
-                    <h4>Ratings Distribution</h4>
-                    <div id="ratingChart"></div>
-                </div>
-            </div>
-
-        </div>
-
-           
-
-</section>
-<section id="sales-analysis">
-
-    <h2 class="mb-4">📈 Sales Analysis</h2>
-
-    <div class="row">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Hourly Sales</h4>
-                <div id="hourlyChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Monthly Sales</h4>
-                <div id="monthlyChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-<section id="branch-analysis" class="mt-5">
-
-    <h2 class="mb-4">🏬 Branch Analysis</h2>
-
-    <div class="row">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Sales by Branch</h4>
-                <div id="branchSalesChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Gross Income by Branch</h4>
-                <div id="branchIncomeChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row mt-4">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Quantity Sold by Branch</h4>
-                <div id="branchQuantityChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Average Customer Rating</h4>
-                <div id="branchRatingChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row mt-4">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Transactions by Branch</h4>
-                <div id="branchTransactionChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Overall Branch Performance</h4>
-                <div id="branchRadarChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-</section>
-<section id="product-analysis" class="mt-5">
-
-    <h2 class="mb-4">📦 Product Analysis</h2>
-
-    <!-- Row 1 -->
-    <div class="row">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Sales by Product Line</h4>
-                <div id="productSalesChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Gross Income by Product Line</h4>
-                <div id="productIncomeChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Row 2 -->
-    <div class="row mt-4">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Quantity Sold by Product Line</h4>
-                <div id="productQuantityChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Average Rating by Product Line</h4>
-                <div id="productRatingChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Row 3 -->
-    <div class="row mt-4">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Transactions by Product Line</h4>
-                <div id="productTransactionChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Product Performance Radar</h4>
-                <div id="productRadarChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ================================================= -->
-<!-- CUSTOMER ANALYSIS -->
-<!-- ================================================= -->
-
-<section id="customer-analysis" class="mt-5">
-
-    <h2 class="mb-4">👥 Customer Analysis</h2>
-
-    <!-- Row 1 -->
-    <div class="row">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Customer Type Distribution</h4>
-                <div id="customerTypeChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Gender Distribution</h4>
-                <div id="customerGenderChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Row 2 -->
-    <div class="row mt-4">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Average Rating by Customer Type</h4>
-                <div id="customerRatingChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Total Sales by Customer Type</h4>
-                <div id="customerSalesChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Row 3 -->
-    <div class="row mt-4">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Transactions by Customer Type</h4>
-                <div id="customerTransactionChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Customer Performance Radar</h4>
-                <div id="customerRadarChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- PAYMENT ANALYSIS -->
-<!-- ================================================= -->
-
-<section id="payment-analysis" class="mt-5">
-
-    <h2 class="mb-4">💳 Payment Analysis</h2>
-
-    <!-- Row 1 -->
-    <div class="row">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Payment Method Distribution</h4>
-                <div id="paymentMethodChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Total Sales by Payment Method</h4>
-                <div id="paymentSalesChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Row 2 -->
-    <div class="row mt-4">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Gross Income by Payment Method</h4>
-                <div id="paymentIncomeChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Transactions by Payment Method</h4>
-                <div id="paymentTransactionChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Row 3 -->
-    <div class="row mt-4">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Average Rating by Payment Method</h4>
-                <div id="paymentRatingChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Payment Performance Radar</h4>
-                <div id="paymentRadarChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================================================= -->
-<!-- BUSINESS INSIGHTS -->
-<!-- ================================================= -->
-
-<section id="business-insights" class="mt-5">
-
-    <h2 class="mb-4">💡 Business Insights</h2>
-
-    <!-- Row 1 -->
-    <div class="row">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Top Selling Product Lines</h4>
-                <div id="topProductsChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Sales by City</h4>
-                <div id="topCitiesChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Row 2 -->
-    <div class="row mt-4">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Customer Type Sales</h4>
-                <div id="topCustomersChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Profit Margin</h4>
-                <div id="profitMarginChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Row 3 -->
-    <div class="row mt-4">
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Monthly Growth Trend</h4>
-                <div id="growthChart"></div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="chart-card">
-                <h4>Sales Heatmap (Hour vs Day)</h4>
-                <div id="heatmapChart"></div>
-            </div>
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<footer class="text-center mt-5 mb-3 text-secondary">
-    Supermarket Sales Analytics Dashboard • Built with HTML, CSS, JavaScript & Plotly
 </footer>
+
+<!-- ==========================================
+            BACK TO TOP BUTTON
+========================================== -->
+
+<button id="backToTop">
+
+    <i class="bi bi-arrow-up"></i>
+
+</button>
+
+<!-- ==========================================
+            LOADING SCREEN
+========================================== -->
+
+<div id="loader">
+
+    <div class="spinner-border text-primary"
+         role="status">
+
+    </div>
+
+    <p>
+
+        Loading Dashboard...
+
+    </p>
+
+</div>
 
 </main>
 
 </div>
 
-<!-- JavaScript -->
+<!-- ==========================================
+            JAVASCRIPT
+========================================== -->
+
 <script src="js/charts.js"></script>
-<script src="js/app.js"></script>
+
 <script src="js/filters.js"></script>
 
+<script src="js/app.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    const loader=document.getElementById("loader");
+
+    window.setTimeout(()=>{
+
+        loader.style.opacity="0";
+
+        loader.style.visibility="hidden";
+
+    },900);
+
+});
+
+const topBtn=document.getElementById("backToTop");
+
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY>500){
+
+        topBtn.classList.add("show");
+
+    }
+
+    else{
+
+        topBtn.classList.remove("show");
+
+    }
+
+});
+
+topBtn.onclick=function(){
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+};
+
+</script>
+
 </body>
+
 </html>
