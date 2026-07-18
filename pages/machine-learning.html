@@ -1,586 +1,533 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Machine Learning | Supermarket Sales Dashboard</title>
 
-    <meta charset="UTF-8">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
 
-    <title>Machine Learning | Supermarket Sales Dashboard</title>
+  <!-- Bootstrap Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Plotly -->
-    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-
-    <!-- Dashboard CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-
-    <!-- Machine Learning CSS -->
-    <link rel="stylesheet" href="../css/ml.css">
-
-    <!-- Optional Favicon -->
-    <!-- <link rel="icon" type="image/png" href="../assets/favicon.png"> -->
-
+  <!-- Dashboard CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- Machine Learning CSS -->
+  <link rel="stylesheet" href="../css/ml.css" />
 </head>
+
 <body>
+  <div class="ml-page-wrapper">
 
-<div class="container-fluid py-4">
+    <!-- ========== PAGE HEADER ========== -->
+    <header class="ml-header">
+      <div class="ml-header__text">
+        <h1 class="ml-header__title">
+          <span class="ml-header__icon">🤖</span>
+          Machine Learning Sales Prediction
+        </h1>
+        <p class="ml-header__subtitle">
+          Predict supermarket sales using a trained Random Forest Regression model.
+        </p>
+      </div>
 
-    <!-- ================= HEADER ================= -->
+      <div class="ml-header__actions">
+        <a
+          href="https://github.com/Etim-Antai"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="ml-btn ml-btn--outline-dark"
+          aria-label="GitHub Profile"
+        >
+          <i class="bi bi-github"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/etim-antai-a59328198/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="ml-btn ml-btn--outline-primary"
+          aria-label="LinkedIn Profile"
+        >
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="../index.html" class="ml-btn ml-btn--primary">
+          <i class="bi bi-arrow-left-circle"></i>
+          <span>Back to Dashboard</span>
+        </a>
+      </div>
+    </header>
 
-    <div class="d-flex justify-content-between align-items-center mb-5">
+    <!-- ========== SECTION: MODEL INFORMATION ========== -->
+    <section class="ml-section">
+      <h2 class="ml-section__title">
+        <span>📊</span> Model Information
+      </h2>
 
-        <div>
+      <div class="ml-metrics-grid">
 
-            <h1>🤖 Machine Learning Sales Prediction</h1>
-
-            <p class="text-secondary">
-
-                Predict supermarket sales using a trained Random Forest Regression model.
-
-            </p>
-
+        <div class="ml-metric-card">
+          <span class="ml-metric-card__label">Best Model</span>
+          <span class="ml-metric-card__icon">🌲</span>
+          <strong class="ml-metric-card__value ml-metric-card__value--name">
+            Random Forest
+          </strong>
         </div>
 
-        <div class="d-flex align-items-center gap-2">
-
-    <a href="https://github.com/Etim-Antai"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="btn btn-outline-dark">
-
-        <i class="bi bi-github"></i>
-
-    </a>
-
-    <a href="https://www.linkedin.com/in/etim-antai-a59328198/"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="btn btn-outline-primary">
-
-        <i class="bi bi-linkedin"></i>
-
-    </a>
-
-    <a href="../index.html" class="btn btn-primary">
-
-        <i class="bi bi-arrow-left-circle"></i>
-
-        Back to Dashboard
-
-    </a>
-
-</div>
-    </div>
-
-    <!-- ================= MODEL INFORMATION ================= -->
-
-    <h2 class="mb-4">📊 Model Information</h2>
-
-    <div class="row">
-
-        <div class="col-lg-2 col-md-4 mb-4">
-            <div class="chart-card text-center">
-                <h6>Best Model</h6>
-                <h4>🌲</h4>
-                <strong>Random Forest</strong>
-            </div>
+        <div class="ml-metric-card">
+          <span class="ml-metric-card__label">R² Score</span>
+          <strong class="ml-metric-card__value ml-metric-card__value--success">
+            0.998
+          </strong>
+          <span class="ml-metric-card__badge ml-metric-card__badge--success">Excellent</span>
         </div>
 
-        <div class="col-lg-2 col-md-4 mb-4">
-            <div class="chart-card text-center">
-                <h6>R² Score</h6>
-                <h2 class="text-success">0.998</h2>
-            </div>
+        <div class="ml-metric-card">
+          <span class="ml-metric-card__label">MAE</span>
+          <strong class="ml-metric-card__value">6.872</strong>
+          <span class="ml-metric-card__sub">Mean Absolute Error</span>
         </div>
 
-        <div class="col-lg-2 col-md-4 mb-4">
-            <div class="chart-card text-center">
-                <h6>MAE</h6>
-                <h2>6.872</h2>
-            </div>
+        <div class="ml-metric-card">
+          <span class="ml-metric-card__label">RMSE</span>
+          <strong class="ml-metric-card__value">10.283</strong>
+          <span class="ml-metric-card__sub">Root Mean Square Error</span>
         </div>
 
-        <div class="col-lg-2 col-md-4 mb-4">
-            <div class="chart-card text-center">
-                <h6>RMSE</h6>
-                <h2>10.283</h2>
-            </div>
+        <div class="ml-metric-card">
+          <span class="ml-metric-card__label">Algorithms</span>
+          <strong class="ml-metric-card__value">4</strong>
+          <span class="ml-metric-card__sub">Models Compared</span>
         </div>
 
-        <div class="col-lg-2 col-md-4 mb-4">
-            <div class="chart-card text-center">
-                <h6>Algorithms</h6>
-                <h2>4</h2>
-            </div>
+        <div class="ml-metric-card">
+          <span class="ml-metric-card__label">Target</span>
+          <strong class="ml-metric-card__value ml-metric-card__value--name">
+            Total Sales
+          </strong>
+          <span class="ml-metric-card__sub">Prediction Output</span>
         </div>
 
-        <div class="col-lg-2 col-md-4 mb-4">
-            <div class="chart-card text-center">
-                <h6>Target</h6>
-                <strong>Total Sales</strong>
-            </div>
-        </div>
+      </div>
+    </section>
 
-    </div>
-
-    <!-- ================= MODEL COMPARISON ================= -->
-
-    <div class="chart-card mt-4">
-
-        <h3 class="mb-4">🏆 Model Comparison</h3>
+    <!-- ========== SECTION: MODEL COMPARISON TABLE ========== -->
+    <section class="ml-section">
+      <div class="ml-card">
+        <h3 class="ml-card__title">
+          <span>🏆</span> Model Comparison
+        </h3>
 
         <div class="table-responsive">
-
-            <table class="table table-dark table-hover">
-
-                <thead>
-
-                    <tr>
-
-                        <th>Model</th>
-                        <th>MAE</th>
-                        <th>RMSE</th>
-                        <th>R² Score</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-                        <td>Linear Regression</td>
-                        <td>58.919</td>
-                        <td>79.565</td>
-                        <td>0.903</td>
-                    </tr>
-
-                    <tr>
-                        <td>Decision Tree</td>
-                        <td>8.489</td>
-                        <td>13.354</td>
-                        <td>0.997</td>
-                    </tr>
-
-                    <tr class="table-success">
-                        <td><strong>Random Forest ⭐</strong></td>
-                        <td><strong>6.872</strong></td>
-                        <td><strong>10.283</strong></td>
-                        <td><strong>0.998</strong></td>
-                    </tr>
-
-                    <tr>
-                        <td>Gradient Boosting</td>
-                        <td>7.594</td>
-                        <td>10.345</td>
-                        <td>0.998</td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-<!-- ================= PREDICTION FORM ================= -->
-
-<div class="chart-card mt-5">
-
-<h3 class="mb-4">📝 Sales Prediction Form</h3>
-
-<form id="predictionForm">
-
-<div class="row">
-
-    <div class="col-md-3 mb-3">
-        <label class="form-label">Branch</label>
-        <select class="form-select" id="branch">
-            <option>A</option>
-            <option>B</option>
-            <option>C</option>
-        </select>
-    </div>
-
-
-    <div class="col-md-3 mb-3">
-        <label class="form-label">City</label>
-        <select class="form-select" id="city">
-            <option>Yangon</option>
-            <option>Mandalay</option>
-            <option>Naypyitaw</option>
-        </select>
-    </div>
-
-
-    <div class="col-md-3 mb-3">
-        <label class="form-label">Customer Type</label>
-        <select class="form-select" id="customerType">
-            <option>Member</option>
-            <option>Normal</option>
-        </select>
-    </div>
-
-
-    <div class="col-md-3 mb-3">
-        <label class="form-label">Gender</label>
-        <select class="form-select" id="gender">
-            <option>Female</option>
-            <option>Male</option>
-        </select>
-    </div>
-
-</div>
-
-
-<div class="row">
-
-
-    <div class="col-md-4 mb-3">
-        <label class="form-label">Product Line</label>
-
-        <select class="form-select" id="productLine">
-
-            <option>Electronic accessories</option>
-            <option>Fashion accessories</option>
-            <option>Food and beverages</option>
-            <option>Health and beauty</option>
-            <option>Home and lifestyle</option>
-            <option>Sports and travel</option>
-
-        </select>
-
-    </div>
-
-
-    <div class="col-md-2 mb-3">
-
-        <label class="form-label">Unit Price</label>
-
-        <input 
-            type="number"
-            class="form-control"
-            id="unitPrice"
-            value="50">
-
-    </div>
-
-
-    <div class="col-md-2 mb-3">
-
-        <label class="form-label">Quantity</label>
-
-        <input 
-            type="number"
-            class="form-control"
-            id="quantity"
-            value="5">
-
-    </div>
-
-
-    <div class="col-md-4 mb-3">
-
-        <label class="form-label">Payment</label>
-
-        <select class="form-select" id="payment">
-
-            <option>Cash</option>
-            <option>Credit card</option>
-            <option>Ewallet</option>
-
-        </select>
-
-    </div>
-
-
-</div>
-
-
-<div class="row">
-
-
-    <div class="col-md-4 mb-3">
-
-        <label class="form-label">Day</label>
-
-        <select class="form-select" id="day">
-
-            <option>Monday</option>
-            <option>Tuesday</option>
-            <option>Wednesday</option>
-            <option>Thursday</option>
-            <option>Friday</option>
-            <option>Saturday</option>
-            <option>Sunday</option>
-
-        </select>
-
-    </div>
-
-
-    <div class="col-md-4 mb-3">
-
-        <label class="form-label">Hour</label>
-
-        <input 
-            type="number"
-            class="form-control"
-            id="hour"
-            value="14">
-
-    </div>
-
-
-</div>
-
-
-<div class="text-center">
-
-<button type="submit" class="btn btn-primary btn-lg px-5">
-
-<i class="bi bi-cpu-fill"></i>
-
-Predict Sales
-
-</button>
-
-</div>
-
-
-</form>
-
-</div>
-<!-- ================= PREDICTION RESULT ================= -->
-
-<div class="chart-card mt-5">
-
-    <h3>📈 Prediction Result</h3>
-
-    <div class="alert alert-success text-center mt-4">
-
-        <h1 id="predictionValue">$0.00</h1>
-
-        <p class="mb-0">
-            Fill the form and click <strong>Predict Sales</strong>.
-        </p>
-
-    </div>
-
-</div>
-
-<!-- ================= MODEL PERFORMANCE ================= -->
-
-<div class="row mt-5">
-
-    <div class="col-lg-6 mb-4">
-
-        <div class="chart-card">
-
-            <h3 class="mb-4">📊 Feature Importance</h3>
-
-            <div id="featureImportanceChart" style="height:400px;"></div>
-
-        </div>
-
-    </div>
-
-    <div class="col-lg-6 mb-4">
-
-        <div class="chart-card">
-
-            <h3 class="mb-4">📈 Prediction vs Actual</h3>
-
-            <div id="predictionChart" style="height:400px;"></div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- ================= MODEL SUMMARY ================= -->
-
-<div class="chart-card mt-5">
-
-    <h3 class="mb-4">
-        🌲 Random Forest Regression Model Summary
-    </h3>
-
-    <p>
-
-        This Machine Learning model predicts supermarket sales using historical
-        transaction records. The dataset was preprocessed using an
-        <strong>OrdinalEncoder</strong> inside a
-        <strong>ColumnTransformer</strong>, while numerical variables were passed
-        through unchanged.
-
-    </p>
-
-    <p>
-
-        Four regression algorithms were trained and evaluated using an
-        80/20 train-test split.
-
-    </p>
-
-    <div class="table-responsive">
-
-        <table class="table table-bordered table-striped">
-
-            <thead class="table-dark">
-
-                <tr>
-
-                    <th>Model</th>
-                    <th>MAE</th>
-                    <th>RMSE</th>
-                    <th>R² Score</th>
-
-                </tr>
-
+          <table class="table table-dark table-hover ml-table">
+            <thead>
+              <tr>
+                <th scope="col">Model</th>
+                <th scope="col">MAE</th>
+                <th scope="col">RMSE</th>
+                <th scope="col">R² Score</th>
+                <th scope="col">Performance</th>
+              </tr>
             </thead>
-
             <tbody>
-
-                <tr>
-
-                    <td>Linear Regression</td>
-                    <td>58.919</td>
-                    <td>79.565</td>
-                    <td>0.903</td>
-
-                </tr>
-
-                <tr>
-
-                    <td>Decision Tree</td>
-                    <td>8.489</td>
-                    <td>13.354</td>
-                    <td>0.997</td>
-
-                </tr>
-
-                <tr class="table-success">
-
-                    <td><strong>Random Forest ⭐</strong></td>
-                    <td><strong>6.872</strong></td>
-                    <td><strong>10.283</strong></td>
-                    <td><strong>0.998</strong></td>
-
-                </tr>
-
-                <tr>
-
-                    <td>Gradient Boosting</td>
-                    <td>7.594</td>
-                    <td>10.345</td>
-                    <td>0.998</td>
-
-                </tr>
-
+              <tr>
+                <td>Linear Regression</td>
+                <td>58.919</td>
+                <td>79.565</td>
+                <td>0.903</td>
+                <td>
+                  <span class="ml-badge ml-badge--warning">Fair</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Decision Tree</td>
+                <td>8.489</td>
+                <td>13.354</td>
+                <td>0.997</td>
+                <td>
+                  <span class="ml-badge ml-badge--info">Good</span>
+                </td>
+              </tr>
+              <tr class="ml-table__best-row">
+                <td>
+                  <strong>Random Forest</strong>
+                  <span class="ms-1">⭐</span>
+                </td>
+                <td><strong>6.872</strong></td>
+                <td><strong>10.283</strong></td>
+                <td><strong>0.998</strong></td>
+                <td>
+                  <span class="ml-badge ml-badge--success">Best</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Gradient Boosting</td>
+                <td>7.594</td>
+                <td>10.345</td>
+                <td>0.998</td>
+                <td>
+                  <span class="ml-badge ml-badge--info">Good</span>
+                </td>
+              </tr>
             </tbody>
-
-        </table>
-
-    </div>
-
-    <hr>
-
-    <h5>Features Used</h5>
-
-    <div class="row">
-
-        <div class="col-md-6">
-
-            <ul>
-
-                <li>Branch</li>
-                <li>City</li>
-                <li>Customer Type</li>
-                <li>Gender</li>
-                <li>Product Line</li>
-                <li>Payment Method</li>
-                <li>Unit Price</li>
-
-            </ul>
-
+          </table>
         </div>
+      </div>
+    </section>
 
-        <div class="col-md-6">
-
-            <ul>
-
-                <li>Quantity</li>
-                <li>Gross Margin Percentage</li>
-                <li>Rating</li>
-                <li>Year</li>
-                <li>Month</li>
-                <li>Day</li>
-                <li>Hour</li>
-
-            </ul>
-
-        </div>
-
-    </div>
-
-    <div class="alert alert-success mt-4">
-
-        <h5>🏆 Selected Production Model</h5>
-
-        <p class="mb-0">
-
-            Random Forest achieved the lowest prediction error
-            (MAE = <strong>6.872</strong>,
-            RMSE = <strong>10.283</strong>)
-            and an excellent
-            <strong>R² Score of 0.998</strong>,
-            making it the best-performing model for deployment.
-
+    <!-- ========== SECTION: PREDICTION FORM ========== -->
+    <section class="ml-section">
+      <div class="ml-card">
+        <h3 class="ml-card__title">
+          <span>📝</span> Sales Prediction Form
+        </h3>
+        <p class="ml-card__description">
+          Fill in the transaction details below and click <strong>Predict Sales</strong> to get an estimated sales value.
         </p>
 
-    </div>
+        <form id="predictionForm" novalidate>
 
-</div>
+          <!-- Row 1: Branch, City, Customer Type, Gender -->
+          <fieldset class="ml-fieldset">
+            <legend class="ml-fieldset__legend">Customer &amp; Location</legend>
+            <div class="row g-3">
+              <div class="col-sm-6 col-lg-3">
+                <label for="branch" class="form-label ml-form-label">
+                  <i class="bi bi-building"></i> Branch
+                </label>
+                <select class="form-select ml-form-control" id="branch" name="branch">
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                </select>
+              </div>
 
+              <div class="col-sm-6 col-lg-3">
+                <label for="city" class="form-label ml-form-label">
+                  <i class="bi bi-geo-alt"></i> City
+                </label>
+                <select class="form-select ml-form-control" id="city" name="city">
+                  <option value="Yangon">Yangon</option>
+                  <option value="Mandalay">Mandalay</option>
+                  <option value="Naypyitaw">Naypyitaw</option>
+                </select>
+              </div>
 
-<footer class="text-center mt-5 mb-3 text-secondary">
+              <div class="col-sm-6 col-lg-3">
+                <label for="customerType" class="form-label ml-form-label">
+                  <i class="bi bi-person-badge"></i> Customer Type
+                </label>
+                <select class="form-select ml-form-control" id="customerType" name="customerType">
+                  <option value="Member">Member</option>
+                  <option value="Normal">Normal</option>
+                </select>
+              </div>
 
-    Supermarket Sales Analytics Dashboard © 2026
+              <div class="col-sm-6 col-lg-3">
+                <label for="gender" class="form-label ml-form-label">
+                  <i class="bi bi-gender-ambiguous"></i> Gender
+                </label>
+                <select class="form-select ml-form-control" id="gender" name="gender">
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
 
-    <br>
+          <!-- Row 2: Product Line, Unit Price, Quantity, Payment -->
+          <fieldset class="ml-fieldset">
+            <legend class="ml-fieldset__legend">Product &amp; Transaction</legend>
+            <div class="row g-3">
+              <div class="col-sm-6 col-lg-4">
+                <label for="productLine" class="form-label ml-form-label">
+                  <i class="bi bi-bag"></i> Product Line
+                </label>
+                <select class="form-select ml-form-control" id="productLine" name="productLine">
+                  <option value="Electronic accessories">Electronic accessories</option>
+                  <option value="Fashion accessories">Fashion accessories</option>
+                  <option value="Food and beverages">Food and beverages</option>
+                  <option value="Health and beauty">Health and beauty</option>
+                  <option value="Home and lifestyle">Home and lifestyle</option>
+                  <option value="Sports and travel">Sports and travel</option>
+                </select>
+              </div>
 
-    Machine Learning Module | Developed with
-    Python, Scikit-learn, Flask, Plotly & Bootstrap
+              <div class="col-sm-6 col-lg-2">
+                <label for="unitPrice" class="form-label ml-form-label">
+                  <i class="bi bi-tag"></i> Unit Price ($)
+                </label>
+                <input
+                  type="number"
+                  class="form-control ml-form-control"
+                  id="unitPrice"
+                  name="unitPrice"
+                  value="50"
+                  min="1"
+                  step="0.01"
+                  placeholder="e.g. 50"
+                />
+              </div>
 
-</footer>
+              <div class="col-sm-6 col-lg-2">
+                <label for="quantity" class="form-label ml-form-label">
+                  <i class="bi bi-hash"></i> Quantity
+                </label>
+                <input
+                  type="number"
+                  class="form-control ml-form-control"
+                  id="quantity"
+                  name="quantity"
+                  value="5"
+                  min="1"
+                  placeholder="e.g. 5"
+                />
+              </div>
 
-</div>
+              <div class="col-sm-6 col-lg-4">
+                <label for="payment" class="form-label ml-form-label">
+                  <i class="bi bi-credit-card"></i> Payment Method
+                </label>
+                <select class="form-select ml-form-control" id="payment" name="payment">
+                  <option value="Cash">Cash</option>
+                  <option value="Credit card">Credit card</option>
+                  <option value="Ewallet">Ewallet</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
 
-<!-- Plotly -->
-<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+          <!-- Row 3: Day, Hour -->
+          <fieldset class="ml-fieldset">
+            <legend class="ml-fieldset__legend">Date &amp; Time</legend>
+            <div class="row g-3">
+              <div class="col-sm-6 col-lg-6">
+                <label for="day" class="form-label ml-form-label">
+                  <i class="bi bi-calendar-week"></i> Day of Week
+                </label>
+                <select class="form-select ml-form-control" id="day" name="day">
+                  <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                  <option value="Saturday">Saturday</option>
+                  <option value="Sunday">Sunday</option>
+                </select>
+              </div>
 
-<!-- PapaParse -->
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+              <div class="col-sm-6 col-lg-6">
+                <label for="hour" class="form-label ml-form-label">
+                  <i class="bi bi-clock"></i> Hour (0–23)
+                </label>
+                <input
+                  type="number"
+                  class="form-control ml-form-control"
+                  id="hour"
+                  name="hour"
+                  value="14"
+                  min="0"
+                  max="23"
+                  placeholder="e.g. 14"
+                />
+              </div>
+            </div>
+          </fieldset>
 
-<!-- Machine Learning JavaScript -->
-<script src="../js/ml.js"></script>
+          <!-- Submit -->
+          <div class="ml-form-submit">
+            <button type="submit" class="ml-btn ml-btn--predict">
+              <i class="bi bi-cpu-fill"></i>
+              Predict Sales
+            </button>
+          </div>
 
+        </form>
+      </div>
+    </section>
+
+    <!-- ========== SECTION: PREDICTION RESULT ========== -->
+    <section class="ml-section">
+      <div class="ml-card ml-card--result">
+        <h3 class="ml-card__title">
+          <span>📋</span> Prediction Result
+        </h3>
+
+        <div class="ml-result-display">
+          <div class="ml-result-display__value" id="predictionValue">$0.00</div>
+          <p class="ml-result-display__hint">
+            Fill the form above and click <strong>Predict Sales</strong> to see the estimated total sales.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION: MODEL PERFORMANCE CHARTS ========== -->
+    <section class="ml-section">
+      <h2 class="ml-section__title">
+        <span>📈</span> Model Performance
+      </h2>
+
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="ml-card ml-card--chart">
+            <h3 class="ml-card__title">
+              <span>📊</span> Feature Importance
+            </h3>
+            <div id="featureImportanceChart" class="ml-chart-container"></div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="ml-card ml-card--chart">
+            <h3 class="ml-card__title">
+              <span>📐</span> Prediction vs Actual
+            </h3>
+            <div id="predictionChart" class="ml-chart-container"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION: MODEL SUMMARY ========== -->
+    <section class="ml-section">
+      <div class="ml-card">
+        <h3 class="ml-card__title">
+          <span>🌲</span> Random Forest Regression — Model Summary
+        </h3>
+
+        <p class="ml-card__description">
+          This Machine Learning model predicts supermarket sales using historical transaction
+          records. The dataset was preprocessed using an <strong>OrdinalEncoder</strong> inside
+          a <strong>ColumnTransformer</strong>, while numerical variables were passed through
+          unchanged. Four regression algorithms were trained and evaluated using an
+          <strong>80/20 train-test split</strong>.
+        </p>
+
+        <!-- Summary Table -->
+        <div class="table-responsive mb-4">
+          <table class="table table-bordered table-striped ml-table">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">Model</th>
+                <th scope="col">MAE</th>
+                <th scope="col">RMSE</th>
+                <th scope="col">R² Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Linear Regression</td>
+                <td>58.919</td>
+                <td>79.565</td>
+                <td>0.903</td>
+              </tr>
+              <tr>
+                <td>Decision Tree</td>
+                <td>8.489</td>
+                <td>13.354</td>
+                <td>0.997</td>
+              </tr>
+              <tr class="ml-table__best-row">
+                <td><strong>Random Forest ⭐</strong></td>
+                <td><strong>6.872</strong></td>
+                <td><strong>10.283</strong></td>
+                <td><strong>0.998</strong></td>
+              </tr>
+              <tr>
+                <td>Gradient Boosting</td>
+                <td>7.594</td>
+                <td>10.345</td>
+                <td>0.998</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr class="ml-divider" />
+
+        <!-- Features Used -->
+        <h5 class="ml-features__title">
+          <i class="bi bi-list-check"></i> Features Used
+        </h5>
+
+        <div class="row g-3 mb-4">
+          <div class="col-sm-6">
+            <ul class="ml-feature-list">
+              <li><i class="bi bi-check-circle-fill"></i> Branch</li>
+              <li><i class="bi bi-check-circle-fill"></i> City</li>
+              <li><i class="bi bi-check-circle-fill"></i> Customer Type</li>
+              <li><i class="bi bi-check-circle-fill"></i> Gender</li>
+              <li><i class="bi bi-check-circle-fill"></i> Product Line</li>
+              <li><i class="bi bi-check-circle-fill"></i> Payment Method</li>
+              <li><i class="bi bi-check-circle-fill"></i> Unit Price</li>
+            </ul>
+          </div>
+          <div class="col-sm-6">
+            <ul class="ml-feature-list">
+              <li><i class="bi bi-check-circle-fill"></i> Quantity</li>
+              <li><i class="bi bi-check-circle-fill"></i> Gross Margin Percentage</li>
+              <li><i class="bi bi-check-circle-fill"></i> Rating</li>
+              <li><i class="bi bi-check-circle-fill"></i> Year</li>
+              <li><i class="bi bi-check-circle-fill"></i> Month</li>
+              <li><i class="bi bi-check-circle-fill"></i> Day</li>
+              <li><i class="bi bi-check-circle-fill"></i> Hour</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Production Model Callout -->
+        <div class="ml-callout ml-callout--success">
+          <div class="ml-callout__header">
+            <span class="ml-callout__icon">🏆</span>
+            <h5 class="ml-callout__title">Selected Production Model</h5>
+          </div>
+          <p class="ml-callout__body">
+            Random Forest achieved the lowest prediction error
+            (<strong>MAE = 6.872</strong>, <strong>RMSE = 10.283</strong>)
+            and an excellent <strong>R² Score of 0.998</strong>,
+            making it the best-performing model for deployment.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="ml-footer">
+      <p class="ml-footer__copy">
+        Supermarket Sales Analytics Dashboard &copy; 2026
+      </p>
+      <p class="ml-footer__stack">
+        Machine Learning Module &mdash; Developed with
+        <strong>Python</strong>, <strong>Scikit-learn</strong>,
+        <strong>Flask</strong>, <strong>Plotly</strong> &amp; <strong>Bootstrap</strong>
+      </p>
+    </footer>
+
+  </div><!-- /.ml-page-wrapper -->
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Plotly -->
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <!-- PapaParse -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <!-- Machine Learning JS -->
+  <script src="../js/ml.js"></script>
 </body>
 </html>
