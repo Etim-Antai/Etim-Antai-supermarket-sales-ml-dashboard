@@ -1,50 +1,44 @@
 /* ============================================================
    ml.css — Machine Learning Prediction Page
    Supermarket Sales Dashboard
-   Author: Full Stack Developer Refactor
    ============================================================ */
 
 /* ─── CSS Custom Properties ─────────────────────────────────── */
 :root {
-  /* Brand Palette */
-  --ml-primary:        #4f46e5;
-  --ml-primary-hover:  #4338ca;
-  --ml-primary-light:  #eef2ff;
-  --ml-success:        #16a34a;
-  --ml-success-light:  #f0fdf4;
-  --ml-success-border: #bbf7d0;
-  --ml-warning:        #d97706;
-  --ml-warning-light:  #fffbeb;
-  --ml-info:           #0284c7;
-  --ml-info-light:     #e0f2fe;
-  --ml-dark:           #1e293b;
-  --ml-dark-hover:     #0f172a;
+  --ml-primary:           #4f46e5;
+  --ml-primary-hover:     #4338ca;
+  --ml-primary-light:     #eef2ff;
+  --ml-success:           #16a34a;
+  --ml-success-light:     #f0fdf4;
+  --ml-success-border:    #bbf7d0;
+  --ml-warning:           #d97706;
+  --ml-warning-light:     #fffbeb;
+  --ml-warning-border:    #fde68a;
+  --ml-info:              #0284c7;
+  --ml-info-light:        #e0f2fe;
+  --ml-info-border:       #bae6fd;
+  --ml-dark:              #1e293b;
 
-  /* Neutrals */
-  --ml-bg:             #f8fafc;
-  --ml-surface:        #ffffff;
-  --ml-border:         #e2e8f0;
-  --ml-border-dark:    #cbd5e1;
-  --ml-text-primary:   #1e293b;
-  --ml-text-secondary: #64748b;
-  --ml-text-muted:     #94a3b8;
+  --ml-bg:                #f8fafc;
+  --ml-surface:           #ffffff;
+  --ml-border:            #e2e8f0;
+  --ml-border-dark:       #cbd5e1;
+  --ml-text-primary:      #1e293b;
+  --ml-text-secondary:    #64748b;
+  --ml-text-muted:        #94a3b8;
 
-  /* Card / UI */
-  --ml-card-radius:    1rem;
-  --ml-card-shadow:    0 1px 3px rgba(0,0,0,.07),
-                       0 4px 16px rgba(0,0,0,.06);
-  --ml-card-shadow-hover: 0 4px 12px rgba(0,0,0,.10),
-                           0 12px 32px rgba(0,0,0,.08);
+  --ml-card-radius:       1rem;
+  --ml-card-shadow:       0 1px 3px rgba(0, 0, 0, 0.07),
+                          0 4px 16px rgba(0, 0, 0, 0.06);
+  --ml-card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.10),
+                          0 12px 32px rgba(0, 0, 0, 0.08);
 
-  /* Spacing */
-  --ml-section-gap:    3rem;
-  --ml-card-pad:       1.75rem;
-
-  /* Typography */
-  --ml-font:           'Inter', system-ui, -apple-system, sans-serif;
+  --ml-section-gap:       3rem;
+  --ml-card-pad:          1.75rem;
+  --ml-font:              'Inter', system-ui, -apple-system, sans-serif;
 }
 
-/* ─── Reset / Base ───────────────────────────────────────────── */
+/* ─── Base ───────────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -148,8 +142,10 @@ body {
   transition: background-color 0.18s ease,
               border-color 0.18s ease,
               color 0.18s ease,
-              box-shadow 0.18s ease;
+              box-shadow 0.18s ease,
+              transform 0.18s ease;
   white-space: nowrap;
+  line-height: 1.4;
 }
 
 .ml-btn:focus-visible {
@@ -157,7 +153,6 @@ body {
   outline-offset: 2px;
 }
 
-/* Primary */
 .ml-btn--primary {
   background-color: var(--ml-primary);
   border-color: var(--ml-primary);
@@ -169,7 +164,6 @@ body {
   color: #fff;
 }
 
-/* Outline Dark */
 .ml-btn--outline-dark {
   background-color: transparent;
   border-color: var(--ml-dark);
@@ -180,7 +174,6 @@ body {
   color: #fff;
 }
 
-/* Outline Primary */
 .ml-btn--outline-primary {
   background-color: transparent;
   border-color: var(--ml-primary);
@@ -191,12 +184,11 @@ body {
   color: #fff;
 }
 
-/* Predict CTA */
 .ml-btn--predict {
   background-color: var(--ml-primary);
   border-color: var(--ml-primary);
   color: #fff;
-  padding: 0.75rem 2.5rem;
+  padding: 0.75rem 2.75rem;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 0.6rem;
@@ -214,13 +206,13 @@ body {
   box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
 }
 
-/* ─── Section Wrapper ────────────────────────────────────────── */
+/* ─── Section ────────────────────────────────────────────────── */
 .ml-section {
   margin-bottom: var(--ml-section-gap);
 }
 
 .ml-section__title {
-  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
   font-weight: 700;
   color: var(--ml-text-primary);
   margin-bottom: 1.25rem;
@@ -237,6 +229,7 @@ body {
   box-shadow: var(--ml-card-shadow);
   padding: var(--ml-card-pad);
   transition: box-shadow 0.2s ease;
+  height: 100%;
 }
 
 .ml-card:hover {
@@ -258,17 +251,16 @@ body {
   color: var(--ml-text-secondary);
   margin-bottom: 1.5rem;
   max-width: 75ch;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
-/* Chart card keeps consistent height */
-.ml-card--chart {
-  height: 100%;
-}
-
-/* Result card accent */
 .ml-card--result {
   border-left: 4px solid var(--ml-primary);
+}
+
+.ml-card--chart {
+  display: flex;
+  flex-direction: column;
 }
 
 /* ─── Metrics Grid ───────────────────────────────────────────── */
@@ -290,7 +282,7 @@ body {
   }
 }
 
-/* Metric Card */
+/* ─── Metric Card ────────────────────────────────────────────── */
 .ml-metric-card {
   background-color: var(--ml-surface);
   border: 1px solid var(--ml-border);
@@ -311,11 +303,11 @@ body {
 }
 
 .ml-metric-card__label {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: var(--ml-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
 .ml-metric-card__icon {
@@ -340,14 +332,13 @@ body {
 }
 
 .ml-metric-card__sub {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--ml-text-muted);
   line-height: 1.3;
 }
 
-/* Metric Badge */
 .ml-metric-card__badge {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 600;
   padding: 0.2rem 0.55rem;
   border-radius: 999px;
@@ -375,24 +366,18 @@ body {
 
 .ml-table td,
 .ml-table th {
-  padding: 0.75rem 1rem;
+  padding: 0.8rem 1rem;
   vertical-align: middle;
 }
 
-.ml-table__best-row {
-  background-color: rgba(22, 163, 74, 0.12) !important;
+.ml-table__best-row td {
+  background-color: rgba(22, 163, 74, 0.15) !important;
 }
 
-/* Dark table variant override */
-.table-dark.ml-table__best-row,
-.table-dark .ml-table__best-row {
-  --bs-table-accent-bg: rgba(22, 163, 74, 0.2);
-}
-
-/* ─── Badges (table) ─────────────────────────────────────────── */
+/* ─── Badges ─────────────────────────────────────────────────── */
 .ml-badge {
   display: inline-block;
-  padding: 0.25rem 0.6rem;
+  padding: 0.25rem 0.65rem;
   border-radius: 999px;
   font-size: 0.72rem;
   font-weight: 600;
@@ -409,34 +394,32 @@ body {
 .ml-badge--warning {
   background-color: var(--ml-warning-light);
   color: var(--ml-warning);
-  border: 1px solid #fde68a;
+  border: 1px solid var(--ml-warning-border);
 }
 
 .ml-badge--info {
   background-color: var(--ml-info-light);
   color: var(--ml-info);
-  border: 1px solid #bae6fd;
+  border: 1px solid var(--ml-info-border);
 }
 
-/* ─── Prediction Form ────────────────────────────────────────── */
+/* ─── Form ───────────────────────────────────────────────────── */
 .ml-fieldset {
   border: 1px solid var(--ml-border);
   border-radius: 0.75rem;
-  padding: 1.25rem 1.25rem 0.75rem;
+  padding: 1.25rem 1.25rem 1rem;
   margin-bottom: 1.25rem;
   background-color: #f8fafc;
 }
 
 .ml-fieldset__legend {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--ml-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.07em;
   padding: 0 0.5rem;
   width: auto;
-  float: none;
-  display: inline-block;
 }
 
 .ml-form-label {
@@ -455,11 +438,13 @@ body {
 }
 
 .ml-form-control {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   border-color: var(--ml-border-dark);
   border-radius: 0.5rem;
   color: var(--ml-text-primary);
   background-color: var(--ml-surface);
+  height: 2.6rem;
+  padding: 0.45rem 0.85rem;
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
@@ -469,23 +454,32 @@ body {
   outline: none;
 }
 
+.form-select.ml-form-control {
+  padding-right: 2.25rem;
+}
+
 .ml-form-submit {
   display: flex;
   justify-content: center;
-  padding-top: 0.5rem;
+  padding-top: 0.75rem;
 }
 
-/* ─── Prediction Result Display ──────────────────────────────── */
+/* ─── Prediction Result ──────────────────────────────────────── */
 .ml-result-display {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 2rem 1rem;
-  background: linear-gradient(135deg, var(--ml-primary-light) 0%, var(--ml-success-light) 100%);
+  padding: 2.5rem 1.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--ml-primary-light) 0%,
+    var(--ml-success-light) 100%
+  );
   border: 1px solid var(--ml-success-border);
   border-radius: 0.75rem;
   gap: 0.75rem;
+  margin-top: 0.5rem;
 }
 
 .ml-result-display__value {
@@ -494,34 +488,37 @@ body {
   color: var(--ml-primary);
   line-height: 1;
   letter-spacing: -0.02em;
+  margin: 0;
 }
 
 .ml-result-display__hint {
   font-size: 0.9rem;
   color: var(--ml-text-secondary);
   margin: 0;
-  max-width: 40ch;
+  max-width: 42ch;
 }
 
 /* ─── Chart Container ────────────────────────────────────────── */
 .ml-chart-container {
   width: 100%;
   height: 400px;
-  min-height: 300px;
+  flex: 1;
+  min-height: 280px;
 }
 
 @media (max-width: 575px) {
   .ml-chart-container {
-    height: 280px;
+    height: 260px;
   }
 }
 
-/* ─── Model Summary — Features List ─────────────────────────── */
+/* ─── Divider ────────────────────────────────────────────────── */
 .ml-divider {
   border-color: var(--ml-border);
   margin: 1.5rem 0;
 }
 
+/* ─── Features List ──────────────────────────────────────────── */
 .ml-features__title {
   font-size: 1rem;
   font-weight: 700;
@@ -538,7 +535,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.55rem;
 }
 
 .ml-feature-list li {
@@ -555,7 +552,7 @@ body {
   flex-shrink: 0;
 }
 
-/* ─── Callout / Alert Block ──────────────────────────────────── */
+/* ─── Callout ────────────────────────────────────────────────── */
 .ml-callout {
   border-radius: 0.75rem;
   padding: 1.25rem 1.5rem;
@@ -590,7 +587,7 @@ body {
   font-size: 0.875rem;
   color: #166534;
   margin: 0;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 /* ─── Footer ─────────────────────────────────────────────────── */
@@ -614,18 +611,7 @@ body {
   margin: 0;
 }
 
-/* ─── Utility — Bootstrap Form Overrides ─────────────────────── */
-.form-select.ml-form-control,
-.form-control.ml-form-control {
-  height: 2.6rem;
-  padding: 0.45rem 0.85rem;
-}
-
-.form-select.ml-form-control {
-  padding-right: 2.25rem;
-}
-
-/* ─── Scrollbar (optional polish) ───────────────────────────── */
+/* ─── Scrollbar ──────────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -648,7 +634,6 @@ body {
   #predictionForm {
     display: none !important;
   }
-
   .ml-card {
     box-shadow: none;
     border: 1px solid #ccc;
