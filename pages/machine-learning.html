@@ -13,7 +13,7 @@
     rel="stylesheet"
   />
 
-  <!-- Bootstrap -->
+  <!-- Bootstrap CSS -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -27,8 +27,12 @@
 
   <!-- Dashboard CSS -->
   <link rel="stylesheet" href="../css/style.css" />
+
   <!-- Machine Learning CSS -->
   <link rel="stylesheet" href="../css/ml.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/favicon.png" />
 </head>
 
 <body>
@@ -93,7 +97,9 @@
           <strong class="ml-metric-card__value ml-metric-card__value--success">
             0.998
           </strong>
-          <span class="ml-metric-card__badge ml-metric-card__badge--success">Excellent</span>
+          <span class="ml-metric-card__badge ml-metric-card__badge--success">
+            Excellent
+          </span>
         </div>
 
         <div class="ml-metric-card">
@@ -125,12 +131,12 @@
       </div>
     </section>
 
-    <!-- ========== SECTION: MODEL COMPARISON TABLE ========== -->
+    <!-- ========== SECTION: MODEL COMPARISON ========== -->
     <section class="ml-section">
       <div class="ml-card">
-        <h3 class="ml-card__title">
+        <h2 class="ml-card__title">
           <span>🏆</span> Model Comparison
-        </h3>
+        </h2>
 
         <div class="table-responsive">
           <table class="table table-dark table-hover ml-table">
@@ -149,18 +155,14 @@
                 <td>58.919</td>
                 <td>79.565</td>
                 <td>0.903</td>
-                <td>
-                  <span class="ml-badge ml-badge--warning">Fair</span>
-                </td>
+                <td><span class="ml-badge ml-badge--warning">Fair</span></td>
               </tr>
               <tr>
                 <td>Decision Tree</td>
                 <td>8.489</td>
                 <td>13.354</td>
                 <td>0.997</td>
-                <td>
-                  <span class="ml-badge ml-badge--info">Good</span>
-                </td>
+                <td><span class="ml-badge ml-badge--info">Good</span></td>
               </tr>
               <tr class="ml-table__best-row">
                 <td>
@@ -170,18 +172,14 @@
                 <td><strong>6.872</strong></td>
                 <td><strong>10.283</strong></td>
                 <td><strong>0.998</strong></td>
-                <td>
-                  <span class="ml-badge ml-badge--success">Best</span>
-                </td>
+                <td><span class="ml-badge ml-badge--success">Best</span></td>
               </tr>
               <tr>
                 <td>Gradient Boosting</td>
                 <td>7.594</td>
                 <td>10.345</td>
                 <td>0.998</td>
-                <td>
-                  <span class="ml-badge ml-badge--info">Good</span>
-                </td>
+                <td><span class="ml-badge ml-badge--info">Good</span></td>
               </tr>
             </tbody>
           </table>
@@ -192,24 +190,33 @@
     <!-- ========== SECTION: PREDICTION FORM ========== -->
     <section class="ml-section">
       <div class="ml-card">
-        <h3 class="ml-card__title">
+        <h2 class="ml-card__title">
           <span>📝</span> Sales Prediction Form
-        </h3>
+        </h2>
         <p class="ml-card__description">
-          Fill in the transaction details below and click <strong>Predict Sales</strong> to get an estimated sales value.
+          Fill in the transaction details below and click
+          <strong>Predict Sales</strong> to get an estimated sales value.
         </p>
 
         <form id="predictionForm" novalidate>
 
-          <!-- Row 1: Branch, City, Customer Type, Gender -->
+          <!-- Fieldset 1: Customer & Location -->
           <fieldset class="ml-fieldset">
-            <legend class="ml-fieldset__legend">Customer &amp; Location</legend>
+            <legend class="ml-fieldset__legend">
+              Customer &amp; Location
+            </legend>
             <div class="row g-3">
+
               <div class="col-sm-6 col-lg-3">
                 <label for="branch" class="form-label ml-form-label">
                   <i class="bi bi-building"></i> Branch
                 </label>
-                <select class="form-select ml-form-control" id="branch" name="branch">
+                <select
+                  class="form-select ml-form-control"
+                  id="branch"
+                  name="branch"
+                  required
+                >
                   <option value="A">A</option>
                   <option value="B">B</option>
                   <option value="C">C</option>
@@ -220,7 +227,12 @@
                 <label for="city" class="form-label ml-form-label">
                   <i class="bi bi-geo-alt"></i> City
                 </label>
-                <select class="form-select ml-form-control" id="city" name="city">
+                <select
+                  class="form-select ml-form-control"
+                  id="city"
+                  name="city"
+                  required
+                >
                   <option value="Yangon">Yangon</option>
                   <option value="Mandalay">Mandalay</option>
                   <option value="Naypyitaw">Naypyitaw</option>
@@ -231,7 +243,12 @@
                 <label for="customerType" class="form-label ml-form-label">
                   <i class="bi bi-person-badge"></i> Customer Type
                 </label>
-                <select class="form-select ml-form-control" id="customerType" name="customerType">
+                <select
+                  class="form-select ml-form-control"
+                  id="customerType"
+                  name="customer_type"
+                  required
+                >
                   <option value="Member">Member</option>
                   <option value="Normal">Normal</option>
                 </select>
@@ -241,33 +258,59 @@
                 <label for="gender" class="form-label ml-form-label">
                   <i class="bi bi-gender-ambiguous"></i> Gender
                 </label>
-                <select class="form-select ml-form-control" id="gender" name="gender">
+                <select
+                  class="form-select ml-form-control"
+                  id="gender"
+                  name="gender"
+                  required
+                >
                   <option value="Female">Female</option>
                   <option value="Male">Male</option>
                 </select>
               </div>
+
             </div>
           </fieldset>
 
-          <!-- Row 2: Product Line, Unit Price, Quantity, Payment -->
+          <!-- Fieldset 2: Product & Transaction -->
           <fieldset class="ml-fieldset">
-            <legend class="ml-fieldset__legend">Product &amp; Transaction</legend>
+            <legend class="ml-fieldset__legend">
+              Product &amp; Transaction
+            </legend>
             <div class="row g-3">
-              <div class="col-sm-6 col-lg-4">
+
+              <div class="col-sm-12 col-md-6 col-lg-4">
                 <label for="productLine" class="form-label ml-form-label">
                   <i class="bi bi-bag"></i> Product Line
                 </label>
-                <select class="form-select ml-form-control" id="productLine" name="productLine">
-                  <option value="Electronic accessories">Electronic accessories</option>
-                  <option value="Fashion accessories">Fashion accessories</option>
-                  <option value="Food and beverages">Food and beverages</option>
-                  <option value="Health and beauty">Health and beauty</option>
-                  <option value="Home and lifestyle">Home and lifestyle</option>
-                  <option value="Sports and travel">Sports and travel</option>
+                <select
+                  class="form-select ml-form-control"
+                  id="productLine"
+                  name="product_line"
+                  required
+                >
+                  <option value="Electronic accessories">
+                    Electronic accessories
+                  </option>
+                  <option value="Fashion accessories">
+                    Fashion accessories
+                  </option>
+                  <option value="Food and beverages">
+                    Food and beverages
+                  </option>
+                  <option value="Health and beauty">
+                    Health and beauty
+                  </option>
+                  <option value="Home and lifestyle">
+                    Home and lifestyle
+                  </option>
+                  <option value="Sports and travel">
+                    Sports and travel
+                  </option>
                 </select>
               </div>
 
-              <div class="col-sm-6 col-lg-2">
+              <div class="col-sm-6 col-md-3 col-lg-2">
                 <label for="unitPrice" class="form-label ml-form-label">
                   <i class="bi bi-tag"></i> Unit Price ($)
                 </label>
@@ -275,15 +318,17 @@
                   type="number"
                   class="form-control ml-form-control"
                   id="unitPrice"
-                  name="unitPrice"
+                  name="unit_price"
                   value="50"
                   min="1"
+                  max="1000"
                   step="0.01"
                   placeholder="e.g. 50"
+                  required
                 />
               </div>
 
-              <div class="col-sm-6 col-lg-2">
+              <div class="col-sm-6 col-md-3 col-lg-2">
                 <label for="quantity" class="form-label ml-form-label">
                   <i class="bi bi-hash"></i> Quantity
                 </label>
@@ -294,32 +339,49 @@
                   name="quantity"
                   value="5"
                   min="1"
+                  max="100"
+                  step="1"
                   placeholder="e.g. 5"
+                  required
                 />
               </div>
 
-              <div class="col-sm-6 col-lg-4">
+              <div class="col-sm-12 col-md-6 col-lg-4">
                 <label for="payment" class="form-label ml-form-label">
                   <i class="bi bi-credit-card"></i> Payment Method
                 </label>
-                <select class="form-select ml-form-control" id="payment" name="payment">
+                <select
+                  class="form-select ml-form-control"
+                  id="payment"
+                  name="payment"
+                  required
+                >
                   <option value="Cash">Cash</option>
                   <option value="Credit card">Credit card</option>
                   <option value="Ewallet">Ewallet</option>
                 </select>
               </div>
+
             </div>
           </fieldset>
 
-          <!-- Row 3: Day, Hour -->
+          <!-- Fieldset 3: Date & Time -->
           <fieldset class="ml-fieldset">
-            <legend class="ml-fieldset__legend">Date &amp; Time</legend>
+            <legend class="ml-fieldset__legend">
+              Date &amp; Time
+            </legend>
             <div class="row g-3">
-              <div class="col-sm-6 col-lg-6">
+
+              <div class="col-sm-6">
                 <label for="day" class="form-label ml-form-label">
                   <i class="bi bi-calendar-week"></i> Day of Week
                 </label>
-                <select class="form-select ml-form-control" id="day" name="day">
+                <select
+                  class="form-select ml-form-control"
+                  id="day"
+                  name="day"
+                  required
+                >
                   <option value="Monday">Monday</option>
                   <option value="Tuesday">Tuesday</option>
                   <option value="Wednesday">Wednesday</option>
@@ -330,7 +392,7 @@
                 </select>
               </div>
 
-              <div class="col-sm-6 col-lg-6">
+              <div class="col-sm-6">
                 <label for="hour" class="form-label ml-form-label">
                   <i class="bi bi-clock"></i> Hour (0–23)
                 </label>
@@ -342,13 +404,16 @@
                   value="14"
                   min="0"
                   max="23"
+                  step="1"
                   placeholder="e.g. 14"
+                  required
                 />
               </div>
+
             </div>
           </fieldset>
 
-          <!-- Submit -->
+          <!-- Submit Button -->
           <div class="ml-form-submit">
             <button type="submit" class="ml-btn ml-btn--predict">
               <i class="bi bi-cpu-fill"></i>
@@ -363,14 +428,15 @@
     <!-- ========== SECTION: PREDICTION RESULT ========== -->
     <section class="ml-section">
       <div class="ml-card ml-card--result">
-        <h3 class="ml-card__title">
+        <h2 class="ml-card__title">
           <span>📋</span> Prediction Result
-        </h3>
+        </h2>
 
         <div class="ml-result-display">
-          <div class="ml-result-display__value" id="predictionValue">$0.00</div>
+          <p class="ml-result-display__value" id="predictionValue">$0.00</p>
           <p class="ml-result-display__hint">
-            Fill the form above and click <strong>Predict Sales</strong> to see the estimated total sales.
+            Fill the form above and click <strong>Predict Sales</strong>
+            to see the estimated total sales.
           </p>
         </div>
       </div>
@@ -406,64 +472,25 @@
     <!-- ========== SECTION: MODEL SUMMARY ========== -->
     <section class="ml-section">
       <div class="ml-card">
-        <h3 class="ml-card__title">
+        <h2 class="ml-card__title">
           <span>🌲</span> Random Forest Regression — Model Summary
-        </h3>
+        </h2>
 
         <p class="ml-card__description">
-          This Machine Learning model predicts supermarket sales using historical transaction
-          records. The dataset was preprocessed using an <strong>OrdinalEncoder</strong> inside
-          a <strong>ColumnTransformer</strong>, while numerical variables were passed through
-          unchanged. Four regression algorithms were trained and evaluated using an
+          This Machine Learning model predicts supermarket sales using historical
+          transaction records. The dataset was preprocessed using an
+          <strong>OrdinalEncoder</strong> inside a <strong>ColumnTransformer</strong>,
+          while numerical variables were passed through unchanged. Four regression
+          algorithms were trained and evaluated using an
           <strong>80/20 train-test split</strong>.
         </p>
-
-        <!-- Summary Table -->
-        <div class="table-responsive mb-4">
-          <table class="table table-bordered table-striped ml-table">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col">Model</th>
-                <th scope="col">MAE</th>
-                <th scope="col">RMSE</th>
-                <th scope="col">R² Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Linear Regression</td>
-                <td>58.919</td>
-                <td>79.565</td>
-                <td>0.903</td>
-              </tr>
-              <tr>
-                <td>Decision Tree</td>
-                <td>8.489</td>
-                <td>13.354</td>
-                <td>0.997</td>
-              </tr>
-              <tr class="ml-table__best-row">
-                <td><strong>Random Forest ⭐</strong></td>
-                <td><strong>6.872</strong></td>
-                <td><strong>10.283</strong></td>
-                <td><strong>0.998</strong></td>
-              </tr>
-              <tr>
-                <td>Gradient Boosting</td>
-                <td>7.594</td>
-                <td>10.345</td>
-                <td>0.998</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
 
         <hr class="ml-divider" />
 
         <!-- Features Used -->
-        <h5 class="ml-features__title">
+        <h3 class="ml-features__title">
           <i class="bi bi-list-check"></i> Features Used
-        </h5>
+        </h3>
 
         <div class="row g-3 mb-4">
           <div class="col-sm-6">
@@ -494,7 +521,7 @@
         <div class="ml-callout ml-callout--success">
           <div class="ml-callout__header">
             <span class="ml-callout__icon">🏆</span>
-            <h5 class="ml-callout__title">Selected Production Model</h5>
+            <h3 class="ml-callout__title">Selected Production Model</h3>
           </div>
           <p class="ml-callout__body">
             Random Forest achieved the lowest prediction error
@@ -515,19 +542,28 @@
       <p class="ml-footer__stack">
         Machine Learning Module &mdash; Developed with
         <strong>Python</strong>, <strong>Scikit-learn</strong>,
-        <strong>Flask</strong>, <strong>Plotly</strong> &amp; <strong>Bootstrap</strong>
+        <strong>Flask</strong>, <strong>Plotly</strong>
+        &amp; <strong>Bootstrap</strong>
       </p>
     </footer>
 
   </div><!-- /.ml-page-wrapper -->
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Plotly -->
+  <!-- Bootstrap JS Bundle (required for interactive components) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+  </script>
+
+  <!-- Plotly (single load at bottom of body) -->
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
   <!-- PapaParse -->
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js">
+  </script>
+
   <!-- Machine Learning JS -->
   <script src="../js/ml.js"></script>
+
 </body>
 </html>
