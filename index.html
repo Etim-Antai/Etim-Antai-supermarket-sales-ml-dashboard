@@ -15,7 +15,7 @@
     
     <!-- Main Dashboard Styles -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Shared Analytics Styles (Reusing for consistency) -->
+    <!-- Shared Analytics Styles -->
     <link rel="stylesheet" href="analytics/css/analytics.css">
 
     <!-- Plotly -->
@@ -24,7 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 
     <style>
-        /* Modern Hamburger Customization */
+        /* --- Modern Hamburger Sidebar --- */
         .nav-overlay {
             position: fixed;
             top: 0;
@@ -32,8 +32,8 @@
             width: 280px;
             height: 100%;
             background: #0f172a;
-            z-index: 1000;
-            transition: 0.4s ease;
+            z-index: 1050;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             padding: 2rem;
             box-shadow: 10px 0 30px rgba(0,0,0,0.3);
         }
@@ -41,15 +41,19 @@
         .nav-overlay a {
             display: flex;
             align-items: center;
-            color: white;
+            color: #cbd5e1;
             text-decoration: none;
             padding: 12px 15px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             border-radius: 8px;
             transition: 0.3s;
         }
-        .nav-overlay a:hover { background: rgba(255,255,255,0.1); }
+        .nav-overlay a:hover, .nav-overlay a.active { 
+            background: rgba(255,255,255,0.1); 
+            color: #ffffff;
+        }
         .nav-overlay i { margin-right: 15px; font-size: 1.2rem; }
+        
         .overlay-bg {
             position: fixed;
             top: 0;
@@ -58,9 +62,69 @@
             height: 100%;
             background: rgba(0,0,0,0.5);
             display: none;
-            z-index: 999;
+            z-index: 1040;
+            backdrop-filter: blur(4px);
         }
         .overlay-bg.active { display: block; }
+
+        /* --- Business Highlights (Matches Screenshot) --- */
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .highlight-card {
+            background: #ffffff;
+            border-radius: 16px;
+            display: flex;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .highlight-accent {
+            width: 6px;
+            background: #2563eb; /* Blue accent bar from image */
+            flex-shrink: 0;
+        }
+
+        .highlight-content {
+            flex-grow: 1;
+            padding: 30px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .highlight-content i {
+            font-size: 2.8rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .highlight-label {
+            display: block;
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .highlight-content h3 {
+            margin: 0;
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 1.4rem;
+        }
     </style>
 </head>
 
@@ -71,24 +135,24 @@
     =========================================== -->
     <div class="topbar">
         <div class="d-flex align-items-center">
-            <button class="btn border-0 text-white me-3" id="menuBtn" style="font-size: 1.5rem;">
+            <button class="btn border-0 text-white me-3" id="menuBtn" style="font-size: 1.8rem; line-height: 1;">
                 <i class="bi bi-list"></i>
             </button>
             <h3><i class="bi bi-bar-chart-line-fill"></i> Retail Intelligence</h3>
         </div>
-        <div class="d-none d-md-flex gap-3">
-            <a href="https://github.com/Etim-Antai" class="text-white text-decoration-none small"><i class="bi bi-github"></i> GitHub</a>
+        <div class="d-none d-md-flex gap-4">
+            <a href="https://github.com/Etim-Antai" target="_blank" class="text-white text-decoration-none small"><i class="bi bi-github"></i> GitHub</a>
             <a href="mailto:etymantai@gmail.com" class="text-white text-decoration-none small"><i class="bi bi-envelope"></i> Contact</a>
         </div>
     </div>
 
     <!-- ==========================================
-         HIDDEN SIDE NAV (Small & Clean)
+         HIDDEN SIDE NAV (Hamburger Menu)
     =========================================== -->
     <div class="overlay-bg" id="closeNav"></div>
     <nav class="nav-overlay" id="sideNav">
         <div class="mb-5 d-flex justify-content-between align-items-center">
-            <h5 class="text-white m-0">Menu</h5>
+            <h5 class="text-white m-0">Navigation</h5>
             <button class="btn text-white p-0" id="closeBtn"><i class="bi bi-x-lg"></i></button>
         </div>
         <a href="index.html" class="active"><i class="bi bi-speedometer2"></i> Overview</a>
@@ -96,7 +160,7 @@
         <a href="pages/customers.html"><i class="bi bi-people-fill"></i> Customer Analytics</a>
         <a href="pages/products.html"><i class="bi bi-box-seam"></i> Product Analytics</a>
         <a href="pages/branches.html"><i class="bi bi-shop"></i> Branch Analytics</a>
-        <hr class="text-secondary">
+        <hr class="text-secondary my-4">
         <a href="pages/machine-learning.html"><i class="bi bi-cpu"></i> Machine Learning</a>
     </nav>
 
@@ -104,11 +168,11 @@
          HERO SECTION
     =========================================== -->
     <section class="hero">
-        <span class="badge bg-primary mb-3">v2.0 Performance Update</span>
+        <span class="badge bg-primary mb-3">Business Intelligence Portfolio</span>
         <h1>Retail Sales Intelligence Platform</h1>
         <p>
             An interactive dashboard analyzing retail sales performance, customer behavior and 
-            business trends. Combining web technologies with machine learning for actionable insights.
+            business trends. Combining modern web technologies with machine learning for actionable insights.
         </p>
 
         <div class="tech">
@@ -148,7 +212,7 @@
             </div>
         </div>
 
-        <!-- EXECUTIVE KPIs -->
+        <!-- EXECUTIVE OVERVIEW -->
         <h2 class="section-title">Executive Overview</h2>
         <div class="kpi-grid">
             <div class="kpi-card">
@@ -181,20 +245,18 @@
             </div>
         </div>
 
-        <!-- FILTERS TOOLBAR -->
-        <div class="filter-toolbar mt-5">
-            <div class="filters">
-                <select id="branchFilter" class="form-select-sm"><option value="">All Branches</option></select>
-                <select id="productFilter" class="form-select-sm"><option value="">All Product Lines</option></select>
-                <select id="paymentFilter" class="form-select-sm"><option value="">All Payments</option></select>
+        <!-- ANALYTICS SECTION -->
+        <section style="margin-top:50px;">
+            <div class="filter-toolbar mb-4">
+                <div class="filters">
+                    <select id="branchFilter" class="form-select-sm"><option value="">All Branches</option></select>
+                    <select id="productFilter" class="form-select-sm"><option value="">All Product Lines</option></select>
+                    <select id="paymentFilter" class="form-select-sm"><option value="">All Payments</option></select>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary" onclick="resetFilters()">Reset</button>
             </div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="resetFilters()">Reset</button>
-        </div>
 
-        <!-- ANALYTICS GRID -->
-        <section style="margin-top:40px;">
             <div class="customer-grid">
-                <!-- Main Trend -->
                 <div class="chart-card full-width">
                     <div class="chart-header">
                         <div>
@@ -206,55 +268,64 @@
                     <div id="salesTrend"></div>
                 </div>
 
-                <!-- Branch -->
                 <div class="chart-card">
-                    <div class="chart-header">
-                        <h4>Branch Performance</h4>
-                    </div>
+                    <div class="chart-header"><h4>Branch Performance</h4></div>
                     <div id="salesByBranch"></div>
                 </div>
 
-                <!-- Product -->
                 <div class="chart-card">
-                    <div class="chart-header">
-                        <h4>Product Share</h4>
-                    </div>
+                    <div class="chart-header"><h4>Product Distribution</h4></div>
                     <div id="salesByProduct"></div>
                 </div>
             </div>
         </section>
 
-        <!-- HIGHLIGHTS SECTION -->
+        <!-- ==========================================
+             BUSINESS HIGHLIGHTS (RE-STYLED)
+        =========================================== -->
         <h2 class="section-title mt-5">Business Highlights</h2>
-        <div class="row g-4 mb-5">
-            <div class="col-md-3">
-                <div class="kpi-card text-center d-block p-4">
-                    <i class="bi bi-trophy text-warning fs-1 mb-3"></i>
-                    <small class="d-block text-secondary">Top Product</small>
-                    <h5 id="topProduct" class="mt-2">—</h5>
+        <div class="insight-grid mb-5">
+            
+            <!-- Top Product -->
+            <div class="highlight-card">
+                <div class="highlight-accent"></div>
+                <div class="highlight-content">
+                    <i class="bi bi-trophy text-warning"></i>
+                    <span class="highlight-label">Top Product</span>
+                    <h3 id="topProduct">—</h3>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="kpi-card text-center d-block p-4">
-                    <i class="bi bi-geo-alt text-danger fs-1 mb-3"></i>
-                    <small class="d-block text-secondary">Best City</small>
-                    <h5 id="topCity" class="mt-2">—</h5>
+
+            <!-- Best City -->
+            <div class="highlight-card">
+                <div class="highlight-accent"></div>
+                <div class="highlight-content">
+                    <i class="bi bi-geo-alt text-danger"></i>
+                    <span class="highlight-label">Best City</span>
+                    <h3 id="topCity">—</h3>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="kpi-card text-center d-block p-4">
-                    <i class="bi bi-credit-card text-info fs-1 mb-3"></i>
-                    <small class="d-block text-secondary">Top Payment</small>
-                    <h5 id="topPayment" class="mt-2">—</h5>
+
+            <!-- Top Payment -->
+            <div class="highlight-card">
+                <div class="highlight-accent"></div>
+                <div class="highlight-content">
+                    <i class="bi bi-credit-card text-info"></i>
+                    <span class="highlight-label">Top Payment</span>
+                    <h3 id="topPayment">—</h3>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="kpi-card text-center d-block p-4">
-                    <i class="bi bi-clock text-success fs-1 mb-3"></i>
-                    <small class="d-block text-secondary">Peak Time</small>
-                    <h5 id="peakHour" class="mt-2">—</h5>
+
+            <!-- Peak Time -->
+            <div class="highlight-card">
+                <div class="highlight-accent"></div>
+                <div class="highlight-content">
+                    <i class="bi bi-clock text-success"></i>
+                    <span class="highlight-label">Peak Time</span>
+                    <h3 id="peakHour">—</h3>
                 </div>
             </div>
+
         </div>
 
         <!-- FOOTER -->
@@ -262,16 +333,16 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3>Retail Intelligence</h3>
-                    <p>Modern Business Intelligence & Predictive Analytics.</p>
+                    <p>Modern Business Intelligence & Predictive Analytics portfolio.</p>
                 </div>
                 <div class="footer-social">
-                    <a href="#"><i class="bi bi-github"></i></a>
-                    <a href="#"><i class="bi bi-linkedin"></i></a>
-                    <a href="#"><i class="bi bi-envelope"></i></a>
+                    <a href="https://github.com/Etim-Antai" target="_blank"><i class="bi bi-github"></i></a>
+                    <a href="https://linkedin.com/in/etim-antai-a59328198/" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a href="mailto:etymantai@gmail.com"><i class="bi bi-envelope"></i></a>
                 </div>
             </div>
             <hr>
-            <div class="footer-bottom">© 2026 Etim Antai • Retail Intelligence Portfolio</div>
+            <div class="footer-bottom">© 2026 Etim Antai • Retail Sales Intelligence Dashboard</div>
         </footer>
 
     </div>
@@ -281,7 +352,7 @@
     <script src="js/filters.js"></script>
     <script src="js/app.js"></script>
     <script>
-        // Hamburger Toggle Logic
+        /* Hamburger Logic */
         const menuBtn = document.getElementById('menuBtn');
         const closeBtn = document.getElementById('closeBtn');
         const sideNav = document.getElementById('sideNav');
