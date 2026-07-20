@@ -1,75 +1,89 @@
 // =========================================================================
 // charts.js
 // Retail Sales Intelligence Dashboard — Executive Analytics charts
-//
-// This file only draws the charts that exist on index.html:
-//   #salesTrend      Sales Trend (featured line chart)
-//   #salesByBranch   Branch Performance
-//   #salesByProduct  Product Performance
-//   #salesByCity     City Performance
-//   #paymentMethods  Payment Analysis
-//
-// Chart functions for other pages (Sales/Branch/Product/Customer/Payment
-// Analytics, Business Insights) belong in that page's own script once the
-// page is built, so they aren't declared here against divs that don't exist.
+// Updated to match the 2026 Modern Design System
 // =========================================================================
 
 // -------------------------------------------------------------------------
-// Design tokens — kept in sync with css/style.css
+// Design tokens — Synced with CSS :root variables
 // -------------------------------------------------------------------------
 const CHART_COLORS = {
-  sales:        "#3A5CE0", // --c-sales
-  transactions: "#7C3AED", // --c-transactions
-  profit:       "#12946A", // --c-profit
-  rating:       "#D97706", // --c-rating
-  quantity:     "#EA580C", // --c-quantity
-  average:      "#0D9488", // --c-average
+  primary:      "#2563EB", // --primary (Blue)
+  success:      "#10B981", // --success (Green)
+  warning:      "#F59E0B", // --warning (Orange)
+  danger:       "#EF4444", // --danger (Red)
+  info:         "#38BDF8", // --secondary (Light Blue)
+  purple:       "#7C3AED", // (Purple)
 };
 
 const CHART_PALETTE = [
-  CHART_COLORS.sales,
-  CHART_COLORS.profit,
-  CHART_COLORS.rating,
-  CHART_COLORS.transactions,
-  CHART_COLORS.quantity,
-  CHART_COLORS.average,
+  CHART_COLORS.primary,
+  CHART_COLORS.success,
+  CHART_COLORS.warning,
+  CHART_COLORS.purple,
+  CHART_COLORS.info,
+  CHART_COLORS.danger,
 ];
 
-const CHART_TEXT_COLOR = "#475467";  // --text-secondary, readable on white cards
-const CHART_GRID_COLOR = "#E7EAF1";  // --border
+const CHART_TEXT_COLOR = "#475569";  // --text-secondary
+const CHART_GRID_COLOR = "#F1F5F9";  // --border-light (Clean grid lines)
 
-// Shared layout so every chart matches the card's light background
+// Shared layout configuration for consistent design across all charts
 function baseLayout(overrides = {}) {
   return Object.assign(
     {
-      margin: { t: 16, r: 16, b: 40, l: 48 },
+      margin: { t: 20, r: 20, b: 40, l: 50 },
       paper_bgcolor: "transparent",
       plot_bgcolor: "transparent",
-      font: { color: CHART_TEXT_COLOR, family: "Inter, sans-serif", size: 12 },
+      font: { 
+        color: CHART_TEXT_COLOR, 
+        family: "'Inter', sans-serif", 
+        size: 11 
+      },
       colorway: CHART_PALETTE,
-      xaxis: { gridcolor: CHART_GRID_COLOR, zeroline: false },
-      yaxis: { gridcolor: CHART_GRID_COLOR, zeroline: false },
-      legend: { font: { color: CHART_TEXT_COLOR } },
+      xaxis: { 
+        gridcolor: CHART_GRID_COLOR, 
+        zeroline: false,
+        tickfont: { size: 10 }
+      },
+      yaxis: { 
+        gridcolor: CHART_GRID_COLOR, 
+        zeroline: false,
+        tickfont: { size: 10 }
+      },
+      legend: { 
+        font: { size: 11 },
+        orientation: "h",
+        y: -0.2
+      },
     },
     overrides
   );
 }
 
-const PLOTLY_CONFIG = { responsive: true, displayModeBar: false };
+const PLOTLY_CONFIG = { 
+  responsive: true, 
+  displayModeBar: false 
+};
 
 // -------------------------------------------------------------------------
-// Entry point — called once the dataset is parsed and filtered
+// Entry point — called once data is parsed
 // -------------------------------------------------------------------------
 function drawCharts(data) {
-  drawSalesTrend(data);
-  drawBranchChart(data);
-  drawProductChart(data);
-  drawCityChart(data);
-  drawPaymentChart(data);
+  // Line chart (Main Trend)
+  if (document.getElementById("salesTrend")) drawSalesTrend(data);
+  
+  // Bar charts
+  if (document.getElementById("salesByBranch")) drawBranchChart(data);
+  if (document.getElementById("salesByProduct")) drawProductChart(data);
+  
+  // Pie charts
+  if (document.getElementById("salesByCity")) drawCityChart(data);
+  if (document.getElementById("paymentMethods")) drawPaymentChart(data);
 }
 
 // -------------------------------------------------------------------------
-// Helper — sum a numeric field grouped by a categorical field
+// Helper — Aggregation logic
 // -------------------------------------------------------------------------
 function groupBy(data, key, valueField = "Sales") {
   const grouped = {};
@@ -81,107 +95,88 @@ function groupBy(data, key, valueField = "Sales") {
 }
 
 // -------------------------------------------------------------------------
-// Sales Trend  →  #salesTrend
+// 1. Sales Trend (Line Chart)
 // -------------------------------------------------------------------------
 function drawSalesTrend(data) {
   const grouped = {};
   data.forEach((row) => {
-    const date = row.Date.toLocaleDateString();
+    const date = row.Date instanceof Date ? row.Date.toLocaleDateString() : row.Date;
     grouped[date] = (grouped[date] || 0) + Number(row.Sales);
   });
 
-  Plotly.newPlot(
-    "salesTrend",
-    [
-      {
-        x: Object.keys(grouped),
-        y: Object.values(grouped),
-        type: "scatter",
-        mode: "lines+markers",
-        line: { width: 3, color: CHART_COLORS.sales, shape: "spline" },
-        marker: { size: 5, color: CHART_COLORS.sales },
-        fill: "tozeroy",
-        fillcolor: "rgba(58, 92, 224, 0.08)",
-        hovertemplate: "%{x}<br>$%{y:,.0f}<extra></extra>",
-      },
-    ],
-    baseLayout(),
-    PLOTLY_CONFIG
-  );
+  const trace = {
+    x: Object.keys(grouped),
+    y: Object.values(grouped),
+    type: "scatter",
+    mode: "lines",
+    line: { width: 3.5, color: CHART_COLORS.primary, shape: "spline" },
+    fill: "tozeroy",
+    fillcolor: "rgba(37, 99, 235, 0.06)", // Soft blue fill
+    hovertemplate: "<b>Date:</b> %{x}<br><b>Sales:</b> $%{y:,.2f}<extra></extra>",
+  };
+
+  Plotly.newPlot("salesTrend", [trace], baseLayout(), PLOTLY_CONFIG);
 }
 
 // -------------------------------------------------------------------------
-// Branch Performance  →  #salesByBranch
+// 2. Branch Performance (Vertical Bar)
 // -------------------------------------------------------------------------
 function drawBranchChart(data) {
   const g = groupBy(data, "Branch");
-  Plotly.newPlot(
-    "salesByBranch",
-    [
-      {
-        x: Object.keys(g),
-        y: Object.values(g),
-        type: "bar",
-        marker: { color: CHART_COLORS.sales, cornerradius: 6 },
-        hovertemplate: "%{x}<br>$%{y:,.0f}<extra></extra>",
-      },
-    ],
-    baseLayout(),
-    PLOTLY_CONFIG
-  );
+  const trace = {
+    x: Object.keys(g),
+    y: Object.values(g),
+    type: "bar",
+    marker: { 
+      color: CHART_COLORS.primary,
+      line: { color: CHART_COLORS.primary, width: 1 }
+    },
+    hovertemplate: "<b>Branch:</b> %{x}<br><b>Total:</b> $%{y:,.0f}<extra></extra>",
+  };
+
+  Plotly.newPlot("salesByBranch", [trace], baseLayout(), PLOTLY_CONFIG);
 }
 
 // -------------------------------------------------------------------------
-// Product Performance  →  #salesByProduct
+// 3. Product Performance (Horizontal Bar)
 // -------------------------------------------------------------------------
 function drawProductChart(data) {
   const g = groupBy(data, "Product line");
-  Plotly.newPlot(
-    "salesByProduct",
-    [
-      {
-        x: Object.values(g),
-        y: Object.keys(g),
-        type: "bar",
-        orientation: "h",
-        marker: { color: CHART_COLORS.average, cornerradius: 6 },
-        hovertemplate: "%{y}<br>$%{x:,.0f}<extra></extra>",
-      },
-    ],
-    baseLayout({
-      margin: { t: 16, r: 16, b: 40, l: 140 },
-      yaxis: { automargin: true },
-    }),
-    PLOTLY_CONFIG
-  );
+  const trace = {
+    x: Object.values(g),
+    y: Object.keys(g),
+    type: "bar",
+    orientation: "h",
+    marker: { color: CHART_COLORS.success },
+    hovertemplate: "<b>Sales:</b> $%{x:,.0f}<extra></extra>",
+  };
+
+  Plotly.newPlot("salesByProduct", [trace], baseLayout({
+    margin: { t: 10, r: 20, b: 40, l: 140 },
+    xaxis: { title: "Revenue ($)" }
+  }), PLOTLY_CONFIG);
 }
 
 // -------------------------------------------------------------------------
-// City Performance  →  #salesByCity
+// 4. City Performance (Donut Chart)
 // -------------------------------------------------------------------------
 function drawCityChart(data) {
   const g = groupBy(data, "City");
-  Plotly.newPlot(
-    "salesByCity",
-    [
-      {
-        labels: Object.keys(g),
-        values: Object.values(g),
-        type: "pie",
-        hole: 0.55,
-        marker: { colors: CHART_PALETTE, line: { color: "#FFFFFF", width: 2 } },
-        textinfo: "label+percent",
-        textfont: { color: CHART_TEXT_COLOR, size: 11 },
-        hovertemplate: "%{label}<br>$%{value:,.0f}<extra></extra>",
-      },
-    ],
-    baseLayout({ showlegend: false }),
-    PLOTLY_CONFIG
-  );
+  const trace = {
+    labels: Object.keys(g),
+    values: Object.values(g),
+    type: "pie",
+    hole: 0.6,
+    marker: { colors: CHART_PALETTE },
+    textinfo: "percent",
+    hovertemplate: "<b>City:</b> %{label}<br><b>Sales:</b> $%{value:,.0f}<extra></extra>",
+  };
+
+  Plotly.newPlot("salesByCity", [trace], baseLayout({ showlegend: true }), PLOTLY_CONFIG);
 }
 
 // -------------------------------------------------------------------------
-// Payment Analysis  →  #paymentMethods
+// 5. Payment Methods (Donut Chart)
 // -------------------------------------------------------------------------
 function drawPaymentChart(data) {
   const counts = {};
@@ -189,21 +184,15 @@ function drawPaymentChart(data) {
     counts[r.Payment] = (counts[r.Payment] || 0) + 1;
   });
 
-  Plotly.newPlot(
-    "paymentMethods",
-    [
-      {
-        labels: Object.keys(counts),
-        values: Object.values(counts),
-        type: "pie",
-        hole: 0.55,
-        marker: { colors: CHART_PALETTE, line: { color: "#FFFFFF", width: 2 } },
-        textinfo: "label+percent",
-        textfont: { color: CHART_TEXT_COLOR, size: 11 },
-        hovertemplate: "%{label}<br>%{value} transactions<extra></extra>",
-      },
-    ],
-    baseLayout({ showlegend: false }),
-    PLOTLY_CONFIG
-  );
+  const trace = {
+    labels: Object.keys(counts),
+    values: Object.values(counts),
+    type: "pie",
+    hole: 0.6,
+    marker: { colors: CHART_PALETTE },
+    textinfo: "percent",
+    hovertemplate: "<b>Method:</b> %{label}<br><b>Count:</b> %{value}<extra></extra>",
+  };
+
+  Plotly.newPlot("paymentMethods", [trace], baseLayout({ showlegend: true }), PLOTLY_CONFIG);
 }
