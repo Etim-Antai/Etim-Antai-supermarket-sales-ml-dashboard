@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Product Analytics | Retail Sales Intelligence Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Main Dashboard Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Shared Analytics Styles -->
+    <link rel="stylesheet" href="../analytics/css/analytics.css">
+
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+    <!-- Papa Parse -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+</head>
+
+
+<body>
+
+<div class="wrapper">
+
+<!-- ==========================================
+SIDEBAR
+========================================== -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<div class="logo-icon">
+
+<i class="bi bi-bar-chart-fill"></i>
+
+</div>
+
+<div>
+
+<h2>Retail Intelligence</h2>
+
+<span>Business Analytics Portfolio</span>
+
+</div>
+
+</div>
+
+<nav>
+
+<ul class="menu">
+
+<li>
+<a href="../index.html">
+<i class="bi bi-speedometer2"></i>
+<span>Dashboard</span>
+</a>
+</li>
+
+<li>
+<a href="sales.html">
+<i class="bi bi-graph-up-arrow"></i>
+<span>Sales Analytics</span>
+</a>
+</li>
+
+<li>
+<a href="customers.html">
+<i class="bi bi-people-fill"></i>
+<span>Customer Analytics</span>
+</a>
+</li>
+
+<li class="active">
+<a href="products.html">
+<i class="bi bi-box-seam"></i>
+<span>Product Analytics</span>
+</a>
+</li>
+
+<li>
+<a href="branches.html">
+<i class="bi bi-shop"></i>
+<span>Branch Analytics</span>
+</a>
+</li>
+
+<li>
+<a href="machine-learning.html">
+<i class="bi bi-cpu-fill"></i>
+<span>Machine Learning</span>
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+</aside>
+
+<!-- ==========================================
+CONTENT
+========================================== -->
+
+<main class="content">
+
+<!-- ==========================================
+HERO
+========================================== -->
+
+<section class="hero-header">
+
+<div class="hero-content">
+
+<div class="hero-text">
+
+<div class="hero-tag">
+
+<i class="bi bi-box-seam"></i>
+
+Product Analytics
+
+</div>
+
+<h1>
+
+Product Performance Dashboard
+
+</h1>
+
+<p>
+
+Analyze product sales, profitability, pricing, customer ratings and revenue contribution across all product lines.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+KPI CARDS
+========================================== -->
+
+<section class="dashboard-section">
+
+<div class="section-header">
+
+<div>
+
+<h2>
+
+<i class="bi bi-speedometer2"></i>
+
+Product Overview
+
+</h2>
+
+<p>
+
+Key performance indicators for product performance.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="kpi-grid">
+
+<div class="kpi-card">
+
+<div class="kpi-icon sales">
+
+<i class="bi bi-box-seam"></i>
+
+</div>
+
+<div class="kpi-body">
+
+<span>Product Lines</span>
+
+<h2 id="totalProducts">--</h2>
+
+<small>Total product categories</small>
+
+</div>
+
+</div>
+
+<div class="kpi-card">
+
+<div class="kpi-icon profit">
+
+<i class="bi bi-cash-stack"></i>
+
+</div>
+
+<div class="kpi-body">
+
+<span>Total Revenue</span>
+
+<h2 id="productRevenue">--</h2>
+
+<small>Total sales generated</small>
+
+</div>
+
+</div>
+
+<div class="kpi-card">
+
+<div class="kpi-icon rating">
+
+<i class="bi bi-star-fill"></i>
+
+</div>
+
+<div class="kpi-body">
+
+<span>Average Rating</span>
+
+<h2 id="avgProductRating">--</h2>
+
+<small>Customer satisfaction</small>
+
+</div>
+
+</div>
+
+<div class="kpi-card">
+
+<div class="kpi-icon average">
+
+<i class="bi bi-currency-dollar"></i>
+
+</div>
+
+<div class="kpi-body">
+
+<span>Average Unit Price</span>
+
+<h2 id="avgUnitPrice">--</h2>
+
+<small>Average selling price</small>
+
+</div>
+
+</div>
+
+<div class="kpi-card">
+
+<div class="kpi-icon quantity">
+
+<i class="bi bi-cart-check-fill"></i>
+
+</div>
+
+<div class="kpi-body">
+
+<span>Quantity Sold</span>
+
+<h2 id="totalQuantity">--</h2>
+
+<small>Total units sold</small>
+
+</div>
+
+</div>
+
+<div class="kpi-card">
+
+<div class="kpi-icon transactions">
+
+<i class="bi bi-trophy-fill"></i>
+
+</div>
+
+<div class="kpi-body">
+
+<span>Top Product</span>
+
+<h2 id="topProduct">--</h2>
+
+<small>Highest revenue product</small>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+EXECUTIVE ANALYTICS
+========================================== -->
+
+<section class="dashboard-section">
+
+<div class="section-header">
+
+<div>
+
+<h2>
+
+<i class="bi bi-bar-chart-line-fill"></i>
+
+Product Analytics
+
+</h2>
+
+<p>
+
+Interactive product performance analysis.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="chart-grid">
+
+<div class="chart-card">
+
+<div class="chart-header">
+
+<h4>Revenue by Product Line</h4>
+
+</div>
+
+<div id="productRevenueChart"></div>
+
+</div>
+
+<div class="chart-card">
+
+<div class="chart-header">
+
+<h4>Quantity Sold</h4>
+
+</div>
+
+<div id="productQuantityChart"></div>
+
+</div>
+
+<div class="chart-card">
+
+<div class="chart-header">
+
+<h4>Average Rating</h4>
+
+</div>
+
+<div id="productRatingChart"></div>
+
+</div>
+
+<div class="chart-card">
+
+<div class="chart-header">
+
+<h4>Average Unit Price</h4>
+
+</div>
+
+<div id="productPriceChart"></div>
+
+</div>
+
+<div class="chart-card">
+
+<div class="chart-header">
+
+<h4>Revenue Share</h4>
+
+</div>
+
+<div id="productShareChart"></div>
+
+</div>
+
+<div class="chart-card">
+
+<div class="chart-header">
+
+<h4>Gross Income</h4>
+
+</div>
+
+<div id="productProfitChart"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+FOOTER
+========================================== -->
+<!-- =====================================================
+                        FOOTER
+====================================================== -->
+
+<footer class="portfolio-footer">
+
+    <div class="footer-content">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+
+            <h3>
+                <i class="bi bi-box-seam"></i>
+                Product Analytics Dashboard
+            </h3>
+
+            <p>
+                Retail Sales Intelligence Dashboard developed using
+                <strong>HTML5</strong>,
+                <strong>CSS3</strong>,
+                <strong>JavaScript</strong>,
+                <strong>Plotly</strong>,
+                <strong>Python</strong>, SQL and Machine Learning.
+                This project demonstrates modern Business Intelligence,
+                interactive dashboards, predictive analytics and data
+                visualization techniques.
+            </p>
+
+        </div>
+
+        <!-- Navigation -->
+        <div class="footer-navigation">
+
+            <h5>Explore Portfolio</h5>
+
+            <a href="../index.html">
+                <i class="bi bi-speedometer2"></i>
+                Dashboard
+            </a>
+
+            <a href="sales.html">
+                <i class="bi bi-graph-up-arrow"></i>
+                Sales Analytics
+            </a>
+
+            <a href="customers.html">
+                <i class="bi bi-people-fill"></i>
+                Customer Analytics
+            </a>
+
+            <a href="branches.html">
+                <i class="bi bi-shop"></i>
+                Branch Analytics
+            </a>
+
+            <a href="machine-learning.html">
+                <i class="bi bi-cpu"></i>
+                Machine Learning
+            </a>
+
+        </div>
+
+        <!-- Social -->
+        <div class="footer-social-wrapper">
+
+            <h5>Connect</h5>
+
+            <div class="footer-social">
+
+                <a href="https://github.com/Etim-Antai/Etim-Antai-supermarket-sales-ml-dashboard"
+                   target="_blank"
+                   title="GitHub">
+
+                    <i class="bi bi-github"></i>
+
+                </a>
+
+                <a href="https://www.linkedin.com/in/etim-antai-a59328198/"
+                   target="_blank"
+                   title="LinkedIn">
+
+                    <i class="bi bi-linkedin"></i>
+
+                </a>
+
+                <a href="mailto:etymantai@gmail.com"
+                   title="Email">
+
+                    <i class="bi bi-envelope-fill"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-bottom">
+
+        <div class="footer-copy">
+            © 2026 Engr. Etim Antai • Retail Sales Intelligence Dashboard
+        </div>
+
+        <div class="footer-version">
+            Version 2.0 • HTML • CSS • JavaScript • Plotly • Python • SQL • Machine Learning
+        </div>
+
+    </div>
+
+</footer>
+</main>
+
+</div>
+
+<script src="../analytics/common.js"></script>
+
+<script src="../analytics/products.js"></script>
+
+</body>
+
+</html>

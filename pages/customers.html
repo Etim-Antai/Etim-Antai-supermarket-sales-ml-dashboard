@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Analytics | Retail Sales Intelligence Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Main Dashboard CSS -->
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+    <!-- Shared Analytics CSS -->
+    <link rel="stylesheet"
+          href="../analytics/css/analytics.css">
+
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+    <!-- Papa Parse -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+</head>
+
+
+
+
+<body>
+
+<!--=========================================
+TOP BAR
+==========================================-->
+
+<div class="topbar">
+
+<h3>
+
+<i class="bi bi-people-fill"></i>
+
+Customer Analytics
+
+</h3>
+
+<a href="../index.html">
+
+<i class="bi bi-arrow-left"></i>
+
+Back to Dashboard
+
+</a>
+
+</div>
+
+<!--=========================================
+HERO
+==========================================-->
+
+<section class="hero">
+
+<h1>
+
+Customer Behaviour Analytics
+
+</h1>
+
+<p>
+
+This interactive dashboard explores customer demographics,
+shopping behaviour, spending patterns and satisfaction
+using visual analytics developed with HTML, JavaScript,
+Plotly and Python.
+
+</p>
+
+<div class="tech">
+
+<span>HTML5</span>
+
+<span>JavaScript</span>
+
+<span>Plotly.js</span>
+
+<span>PapaParse</span>
+
+<span>Python</span>
+
+<span>Business Intelligence</span>
+
+</div>
+
+</section>
+
+<!--=========================================
+MAIN CONTENT
+==========================================-->
+
+<div class="container-fluid">
+
+<h2 class="section-title">
+
+Customer Performance Overview
+
+</h2>
+<!--==================================================
+CUSTOMER KPI CARDS
+===================================================-->
+
+<div class="kpi-grid">
+
+<div class="kpi-card">
+
+<div class="kpi-icon bg-blue">
+
+<i class="bi bi-people-fill"></i>
+
+</div>
+
+<div class="kpi-info">
+
+    <small>Total Transactions</small>
+
+    <h2 id="totalCustomers">--</h2>
+
+    <p>Total completed sales transactions</p>
+
+</div>
+
+
+
+
+</div>
+
+<div class="kpi-card">
+
+<div class="kpi-icon bg-green">
+
+<i class="bi bi-cash-stack"></i>
+
+</div>
+
+<div class="kpi-info">
+
+<small>Average Spending</small>
+
+<h2 id="avgSpending">--</h2>
+
+<p>Average amount spent per transaction</p>
+
+</div>
+
+</div>
+
+<div class="kpi-card">
+
+<div class="kpi-icon bg-orange">
+
+<i class="bi bi-star-fill"></i>
+
+</div>
+
+<div class="kpi-info">
+
+<small>Average Rating</small>
+
+<h2 id="avgRating">--</h2>
+
+<p>Overall customer satisfaction score</p>
+
+</div>
+
+</div>
+
+<div class="kpi-card">
+
+<div class="kpi-icon bg-purple">
+
+<i class="bi bi-cart-check-fill"></i>
+
+</div>
+
+<div class="kpi-info">
+
+<small>Basket Size</small>
+
+<h2 id="avgBasket">--</h2>
+
+<p>Average quantity purchased</p>
+
+</div>
+
+</div>
+
+</div>
+<!-- =====================================================
+                CUSTOMER ANALYTICS
+====================================================== -->
+
+<section style="margin-top:60px;">
+
+    <div class="section-title">
+
+        <h2>
+
+            <i class="bi bi-bar-chart-line-fill"></i>
+
+            Customer Analytics
+
+        </h2>
+
+        <p>
+
+            Explore customer demographics, purchasing behaviour and spending patterns.
+
+        </p>
+
+    </div>
+
+    <div class="customer-grid">
+
+        <!-- Customer Type -->
+
+        <div class="chart-card">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h4>
+
+                        <i class="bi bi-people-fill"></i>
+
+                        Customer Type
+
+                    </h4>
+
+                    <small>
+
+                        Member vs Normal customers
+
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div id="customerTypeChart"></div>
+
+        </div>
+
+        <!-- Gender -->
+
+        <div class="chart-card">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h4>
+
+                        <i class="bi bi-gender-ambiguous"></i>
+
+                        Gender Distribution
+
+                    </h4>
+
+                    <small>
+
+                        Male vs Female customers
+
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div id="genderChart"></div>
+
+        </div>
+
+        <!-- Average Spending -->
+
+        <div class="chart-card full-width">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h4>
+
+                        <i class="bi bi-cash-stack"></i>
+
+                        Average Spending by Customer Type
+
+                    </h4>
+
+                    <small>
+
+                        Compare spending behaviour
+
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div id="customerSpendingChart"></div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================================
+                    FOOTER
+====================================================== -->
+
+<footer class="portfolio-footer">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+
+            <h3>
+
+                <i class="bi bi-people-fill"></i>
+
+                Customer Analytics Dashboard
+
+            </h3>
+
+            <p>
+
+                A Business Intelligence portfolio project built using
+                HTML5, JavaScript, Plotly, Python and Machine Learning.
+
+            </p>
+
+        </div>
+
+        <div class="footer-navigation">
+
+    <h5>Explore Portfolio</h5>
+
+    <a href="../index.html">
+        <i class="bi bi-house-fill"></i>
+        Dashboard
+    </a>
+
+    <a href="sales.html">
+        <i class="bi bi-graph-up-arrow"></i>
+        Sales Analytics
+    </a>
+
+    <a href="products.html">
+        <i class="bi bi-box-seam"></i>
+        Product Analytics
+    </a>
+
+    <a href="branches.html">
+        <i class="bi bi-shop"></i>
+        Branch Analytics
+    </a>
+
+    <a href="machine-learning.html">
+        <i class="bi bi-cpu"></i>
+        Machine Learning
+    </a>
+
+</div>
+        <div class="footer-social">
+
+            <a href="https://github.com/Etim-Antai/Etim-Antai-supermarket-sales-ml-dashboard"
+               target="_blank">
+
+                <i class="bi bi-github"></i>
+
+            </a>
+
+            <a href="https://www.linkedin.com/in/etim-antai-a59328198/"
+               target="_blank">
+
+                <i class="bi bi-linkedin"></i>
+
+            </a>
+
+            <a href="mailto:etymantai@gmail.com">
+
+                <i class="bi bi-envelope-fill"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-bottom">
+
+        © 2026 Etim Antai • Retail Sales Intelligence Portfolio
+
+    </div>
+
+</footer>
+
+<!-- =====================================================
+                    JAVASCRIPT
+====================================================== -->
+
+<!-- Plotly -->
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+<!-- Papa Parse -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+<!-- Shared Analytics Functions -->
+<script src="../analytics/common.js"></script>
+
+<!-- Customer Analytics -->
+<script src="../analytics/customers.js"></script>
+
+</body>
+
+</html>
