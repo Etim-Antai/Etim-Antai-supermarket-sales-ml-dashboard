@@ -1,368 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Retail Sales Intelligence Dashboard</title>
 
-  <!-- Bootstrap (grid/utility helpers only — visual styling lives in style.css) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <!-- Plotly -->
-  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-  <!-- Papa Parse -->
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retail Sales Intelligence Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Main Dashboard Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Shared Analytics Styles (Reusing for consistency) -->
+    <link rel="stylesheet" href="analytics/css/analytics.css">
+
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <!-- Papa Parse -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+    <style>
+        /* Modern Hamburger Customization */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 280px;
+            height: 100%;
+            background: #0f172a;
+            z-index: 1000;
+            transition: 0.4s ease;
+            padding: 2rem;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+        }
+        .nav-overlay.active { left: 0; }
+        .nav-overlay a {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .nav-overlay a:hover { background: rgba(255,255,255,0.1); }
+        .nav-overlay i { margin-right: 15px; font-size: 1.2rem; }
+        .overlay-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 999;
+        }
+        .overlay-bg.active { display: block; }
+    </style>
 </head>
+
 <body>
 
-<div class="wrapper">
-
-  <!-- ==========================================
-       SIDEBAR
-  =========================================== -->
-  <aside class="sidebar">
-    <div class="logo">
-      <div class="logo-icon"><i class="bi bi-bar-chart-line-fill"></i></div>
-      <h2>Retail BI<span>Analytics Platform</span></h2>
+    <!-- ==========================================
+         TOP BAR (With Hamburger)
+    =========================================== -->
+    <div class="topbar">
+        <div class="d-flex align-items-center">
+            <button class="btn border-0 text-white me-3" id="menuBtn" style="font-size: 1.5rem;">
+                <i class="bi bi-list"></i>
+            </button>
+            <h3><i class="bi bi-bar-chart-line-fill"></i> Retail Intelligence</h3>
+        </div>
+        <div class="d-none d-md-flex gap-3">
+            <a href="https://github.com/Etim-Antai" class="text-white text-decoration-none small"><i class="bi bi-github"></i> GitHub</a>
+            <a href="mailto:etymantai@gmail.com" class="text-white text-decoration-none small"><i class="bi bi-envelope"></i> Contact</a>
+        </div>
     </div>
 
-    <nav>
-      <ul class="menu">
-        <li class="active">
-          <a href="index.html"><i class="bi bi-speedometer2"></i><span>Overview</span></a>
-        </li>
-        <li>
-          <a href="pages/sales.html"><i class="bi bi-graph-up-arrow"></i><span>Sales Analytics</span></a>
-        </li>
-        <li>
-          <a href="pages/customers.html"><i class="bi bi-people-fill"></i><span>Customer Analytics</span></a>
-        </li>
-        <li>
-          <a href="pages/products.html"><i class="bi bi-box-seam"></i><span>Product Analytics</span></a>
-        </li>
-        <li>
-          <a href="pages/branches.html"><i class="bi bi-shop"></i><span>Branch Analytics</span></a>
-        </li>
-        <li>
-          <a href="pages/machine-learning.html">
-            <i class="bi bi-cpu"></i><span>Machine Learning</span>
-            <span class="badge bg-success ms-auto">AI</span>
-          </a>
-        </li>
-        <li>
-          <a href="#about"><i class="bi bi-info-circle"></i><span>About Project</span></a>
-        </li>
-      </ul>
+    <!-- ==========================================
+         HIDDEN SIDE NAV (Small & Clean)
+    =========================================== -->
+    <div class="overlay-bg" id="closeNav"></div>
+    <nav class="nav-overlay" id="sideNav">
+        <div class="mb-5 d-flex justify-content-between align-items-center">
+            <h5 class="text-white m-0">Menu</h5>
+            <button class="btn text-white p-0" id="closeBtn"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <a href="index.html" class="active"><i class="bi bi-speedometer2"></i> Overview</a>
+        <a href="pages/sales.html"><i class="bi bi-graph-up-arrow"></i> Sales Analytics</a>
+        <a href="pages/customers.html"><i class="bi bi-people-fill"></i> Customer Analytics</a>
+        <a href="pages/products.html"><i class="bi bi-box-seam"></i> Product Analytics</a>
+        <a href="pages/branches.html"><i class="bi bi-shop"></i> Branch Analytics</a>
+        <hr class="text-secondary">
+        <a href="pages/machine-learning.html"><i class="bi bi-cpu"></i> Machine Learning</a>
     </nav>
-  </aside>
 
-  <!-- ==========================================
-       MAIN CONTENT
-  =========================================== -->
-  <main class="content">
-
-    <!-- ================= HERO ================= -->
-    <section class="hero-header">
-      <div class="hero-content">
-
-        <div class="hero-text">
-          <span class="hero-tag"><i class="bi bi-stars"></i> Retail Business Intelligence Platform</span>
-          <h1>Retail Sales Intelligence Dashboard</h1>
-          <p>
-            An interactive dashboard analysing retail sales performance, customer behaviour and
-            business trends — combining modern web technologies with machine learning to deliver
-            actionable insights.
-          </p>
-
-          <div class="tech-stack">
-            <span>HTML5</span>
-            <span>CSS3</span>
-            <span>JavaScript</span>
-            <span>Bootstrap</span>
-            <span>Plotly</span>
-            <span>Flask API</span>
-            <span>Random Forest</span>
-          </div>
-
-          <div class="hero-buttons">
-            <a href="https://github.com/Etim-Antai/Etim-Antai-supermarket-sales-ml-dashboard" target="_blank" class="btn btn-dark">
-              <i class="bi bi-github"></i> GitHub Repository
-            </a>
-            <a href="pages/machine-learning.html" class="btn btn-success">
-              <i class="bi bi-cpu"></i> ML Prediction
-            </a>
-            <a href="https://www.linkedin.com/in/etim-antai-a59328198/" target="_blank" class="btn btn-outline-light">
-              <i class="bi bi-linkedin"></i> Connect on LinkedIn
-            </a>
-          </div>
-        </div>
-
-        <div class="project-summary">
-          <h4>Project Summary</h4>
-          <div class="summary-item"><span>Dataset</span><strong>Supermarket Sales</strong></div>
-          <div class="summary-item"><span>Total Records</span><strong>1,000</strong></div>
-          <div class="summary-item"><span>Branches</span><strong>3</strong></div>
-          <div class="summary-item"><span>Product Lines</span><strong>6</strong></div>
-          <div class="summary-item"><span>Prediction Model</span><strong>Random Forest</strong></div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= EXECUTIVE OVERVIEW (KPIs) ================= -->
-    <section class="dashboard-section" id="dashboard">
-      <div class="section-header">
-        <div>
-          <h2><i class="bi bi-speedometer2"></i> Executive Overview</h2>
-          <p>Key performance indicators generated directly from the supermarket sales dataset.</p>
-        </div>
-      </div>
-
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-icon sales"><i class="bi bi-currency-dollar"></i></div>
-          <div class="kpi-body">
-            <span>Total Sales</span>
-            <h2 id="totalSales">$0</h2>
-            <small>Total revenue generated</small>
-          </div>
-        </div>
-
-        <div class="kpi-card">
-          <div class="kpi-icon transactions"><i class="bi bi-receipt"></i></div>
-          <div class="kpi-body">
-            <span>Transactions</span>
-            <h2 id="transactions">0</h2>
-            <small>Total completed purchases</small>
-          </div>
-        </div>
-
-        <div class="kpi-card">
-          <div class="kpi-icon profit"><i class="bi bi-cash-stack"></i></div>
-          <div class="kpi-body">
-            <span>Gross Income</span>
-            <h2 id="grossIncome">$0</h2>
-            <small>Total business profit</small>
-          </div>
-        </div>
-
-        <div class="kpi-card">
-          <div class="kpi-icon rating"><i class="bi bi-star-fill"></i></div>
-          <div class="kpi-body">
-            <span>Average Rating</span>
-            <h2 id="avgRating">0</h2>
-            <small>Customer satisfaction</small>
-          </div>
-        </div>
-
-        <div class="kpi-card">
-          <div class="kpi-icon quantity"><i class="bi bi-box-seam"></i></div>
-          <div class="kpi-body">
-            <span>Total Quantity</span>
-            <h2 id="totalQuantity">0</h2>
-            <small>Total items sold</small>
-          </div>
-        </div>
-
-        <div class="kpi-card">
-          <div class="kpi-icon average"><i class="bi bi-graph-up"></i></div>
-          <div class="kpi-body">
-            <span>Average Sale</span>
-            <h2 id="averageSale">$0</h2>
-            <small>Average value per transaction</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= EXECUTIVE ANALYTICS (charts + filters) ================= -->
-    <section class="dashboard-section">
-      <div class="section-header">
-        <div>
-          <h2><i class="bi bi-graph-up-arrow"></i> Executive Analytics</h2>
-          <p>Explore performance across sales, branches, products and customer payments.</p>
-        </div>
-      </div>
-
-      <!-- Filters live next to what they filter, instead of a separate section -->
-      <div class="filter-toolbar">
-        <div class="filters">
-          <select id="branchFilter"><option value="">All Branches</option></select>
-          <select id="cityFilter"><option value="">All Cities</option></select>
-          <select id="productFilter"><option value="">All Product Lines</option></select>
-          <select id="paymentFilter"><option value="">All Payment Methods</option></select>
-        </div>
-        <div class="filter-actions">
-          <button class="btn btn-outline-light" onclick="resetFilters()">
-            <i class="bi bi-arrow-clockwise"></i> Reset
-          </button>
-        </div>
-      </div>
-
-      <div class="chart-card featured-chart">
-        <div class="chart-header">
-          <div>
-            <h4><i class="bi bi-graph-up-arrow"></i> Sales Trend</h4>
-            <small>Revenue performance over time</small>
-          </div>
-          <a href="pages/sales.html" class="chart-link">View Details <i class="bi bi-arrow-right"></i></a>
-        </div>
-        <div id="salesTrend"></div>
-      </div>
-
-      <div class="chart-grid">
-        <div class="chart-card">
-          <div class="chart-header">
-            <div>
-              <h4><i class="bi bi-shop"></i> Branch Performance</h4>
-              <small>Revenue by branch</small>
-            </div>
-            <a href="pages/branches.html" class="chart-link">View</a>
-          </div>
-          <div id="salesByBranch"></div>
-        </div>
-
-        <div class="chart-card">
-          <div class="chart-header">
-            <div>
-              <h4><i class="bi bi-box-seam"></i> Product Performance</h4>
-              <small>Sales by product line</small>
-            </div>
-            <a href="pages/products.html" class="chart-link">View</a>
-          </div>
-          <div id="salesByProduct"></div>
-        </div>
-
-        <div class="chart-card">
-          <div class="chart-header">
-            <div>
-              <h4><i class="bi bi-geo-alt"></i> City Performance</h4>
-              <small>Revenue by city</small>
-            </div>
-            <a href="pages/branches.html" class="chart-link">View</a>
-          </div>
-          <div id="salesByCity"></div>
-        </div>
-
-        <div class="chart-card">
-          <div class="chart-header">
-            <div>
-              <h4><i class="bi bi-credit-card"></i> Payment Analysis</h4>
-              <small>Payment method distribution</small>
-            </div>
-            <a href="pages/payments.html" class="chart-link">View</a>
-          </div>
-          <div id="paymentMethods"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= BUSINESS HIGHLIGHTS ================= -->
-    <section class="dashboard-section">
-      <div class="section-header">
-        <div>
-          <h2><i class="bi bi-lightbulb-fill"></i> Business Highlights</h2>
-          <p>Key insights automatically generated from the supermarket sales dataset.</p>
-        </div>
-      </div>
-
-      <div class="insight-grid">
-        <div class="insight-card">
-          <div class="icon-circle gold"><i class="bi bi-trophy-fill"></i></div>
-          <span class="insight-label">Top Selling Product</span>
-          <h3 id="topProduct">—</h3>
-          <small>Highest revenue generating product line</small>
-        </div>
-
-        <div class="insight-card">
-          <div class="icon-circle blue"><i class="bi bi-shop"></i></div>
-          <span class="insight-label">Best Performing Branch</span>
-          <h3 id="topBranch">—</h3>
-          <small>Branch with the highest sales revenue</small>
-        </div>
-
-        <div class="insight-card">
-          <div class="icon-circle green"><i class="bi bi-geo-alt-fill"></i></div>
-          <span class="insight-label">Highest Revenue City</span>
-          <h3 id="topCity">—</h3>
-          <small>City contributing the most revenue</small>
-        </div>
-
-        <div class="insight-card">
-          <div class="icon-circle purple"><i class="bi bi-credit-card-fill"></i></div>
-          <span class="insight-label">Preferred Payment Method</span>
-          <h3 id="topPayment">—</h3>
-          <small>Most frequently used payment option</small>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= CALL TO ACTION ================= -->
-    <section class="dashboard-section" id="about">
-      <div class="chart-card text-center cta-card">
-        <h2>Like What You See?</h2>
-        <p class="mt-3">
-          This project demonstrates my ability to build interactive BI dashboards, perform advanced
-          data analysis, and integrate machine learning into modern web applications. Explore the
-          source code or get in touch about collaboration and opportunities.
+    <!-- ==========================================
+         HERO SECTION
+    =========================================== -->
+    <section class="hero">
+        <span class="badge bg-primary mb-3">v2.0 Performance Update</span>
+        <h1>Retail Sales Intelligence Platform</h1>
+        <p>
+            An interactive dashboard analyzing retail sales performance, customer behavior and 
+            business trends. Combining web technologies with machine learning for actionable insights.
         </p>
-        <div class="mt-4 d-flex justify-content-center flex-wrap gap-3">
-          <a href="https://github.com/Etim-Antai/Etim-Antai-supermarket-sales-ml-dashboard" target="_blank" class="btn btn-primary btn-lg">
-            <i class="bi bi-github"></i> View Source Code
-          </a>
-          <a href="https://www.linkedin.com/in/etim-antai-a59328198/" target="_blank" class="btn btn-outline-light btn-lg">
-            <i class="bi bi-linkedin"></i> Connect on LinkedIn
-          </a>
-          <a href="mailto:etymantai@gmail.com" class="btn btn-success btn-lg">
-            <i class="bi bi-envelope-fill"></i> Email Me
-          </a>
+
+        <div class="tech">
+            <span>HTML5</span> <span>Plotly.js</span> <span>Python</span> <span>Flask</span> <span>Random Forest</span>
         </div>
-      </div>
+
+        <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="pages/sales.html" class="btn btn-primary px-4 py-2">Explore Analytics</a>
+            <a href="pages/machine-learning.html" class="btn btn-outline-light px-4 py-2">ML Predictions</a>
+        </div>
     </section>
 
-  </main>
-</div>
+    <!-- ==========================================
+         MAIN CONTENT
+    =========================================== -->
+    <div class="container-fluid">
 
-<!-- ==========================================
-     FOOTER
-=========================================== -->
-<footer class="footer">
-  <div class="footer-brand">
-    <h4><i class="bi bi-bar-chart-line-fill"></i> Retail Sales Intelligence Dashboard</h4>
-    <p>Portfolio project showcasing business intelligence, data analytics, data visualization and machine learning.</p>
-  </div>
+        <!-- PROJECT SUMMARY PANEL -->
+        <div class="chart-card mb-5 bg-dark border-secondary">
+            <div class="row g-4 text-center">
+                <div class="col-6 col-md-3">
+                    <small class="text-secondary d-block">Records</small>
+                    <h4 class="text-white mb-0">1,000</h4>
+                </div>
+                <div class="col-6 col-md-3">
+                    <small class="text-secondary d-block">Branches</small>
+                    <h4 class="text-white mb-0">3 Cities</h4>
+                </div>
+                <div class="col-6 col-md-3">
+                    <small class="text-secondary d-block">Categories</small>
+                    <h4 class="text-white mb-0">6 Lines</h4>
+                </div>
+                <div class="col-6 col-md-3">
+                    <small class="text-secondary d-block">Algorithm</small>
+                    <h4 class="text-white mb-0">Random Forest</h4>
+                </div>
+            </div>
+        </div>
 
-  <div class="footer-social">
-    <a href="https://github.com/Etim-Antai/Etim-Antai-supermarket-sales-ml-dashboard" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
-    <a href="https://www.linkedin.com/in/etim-antai-a59328198/" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-    <a href="mailto:etymantai@gmail.com" title="Email"><i class="bi bi-envelope-fill"></i></a>
-  </div>
+        <!-- EXECUTIVE KPIs -->
+        <h2 class="section-title">Executive Overview</h2>
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-icon bg-green"><i class="bi bi-currency-dollar"></i></div>
+                <div class="kpi-info">
+                    <small>Total Sales</small>
+                    <h2 id="totalSales">$0</h2>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon bg-blue"><i class="bi bi-receipt"></i></div>
+                <div class="kpi-info">
+                    <small>Transactions</small>
+                    <h2 id="transactions">0</h2>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon bg-purple"><i class="bi bi-cash-stack"></i></div>
+                <div class="kpi-info">
+                    <small>Gross Income</small>
+                    <h2 id="grossIncome">$0</h2>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon bg-orange"><i class="bi bi-star-fill"></i></div>
+                <div class="kpi-info">
+                    <small>Avg Rating</small>
+                    <h2 id="avgRating">0</h2>
+                </div>
+            </div>
+        </div>
 
-  <div class="footer-copy">© 2026 Etim Antai • Designed &amp; developed with HTML, CSS, JavaScript, Plotly, Python &amp; Flask.</div>
-</footer>
+        <!-- FILTERS TOOLBAR -->
+        <div class="filter-toolbar mt-5">
+            <div class="filters">
+                <select id="branchFilter" class="form-select-sm"><option value="">All Branches</option></select>
+                <select id="productFilter" class="form-select-sm"><option value="">All Product Lines</option></select>
+                <select id="paymentFilter" class="form-select-sm"><option value="">All Payments</option></select>
+            </div>
+            <button class="btn btn-sm btn-outline-secondary" onclick="resetFilters()">Reset</button>
+        </div>
 
-<!-- ==========================================
-     BACK TO TOP BUTTON
-=========================================== -->
-<button id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+        <!-- ANALYTICS GRID -->
+        <section style="margin-top:40px;">
+            <div class="customer-grid">
+                <!-- Main Trend -->
+                <div class="chart-card full-width">
+                    <div class="chart-header">
+                        <div>
+                            <h4><i class="bi bi-graph-up-arrow"></i> Sales Trend</h4>
+                            <small>Revenue performance over time</small>
+                        </div>
+                        <a href="pages/sales.html" class="btn btn-sm btn-outline-primary">Details</a>
+                    </div>
+                    <div id="salesTrend"></div>
+                </div>
 
-<!-- ==========================================
-     JAVASCRIPT
-=========================================== -->
-<script src="js/charts.js"></script>
-<script src="js/filters.js"></script>
-<script src="js/app.js"></script>
-<script>
-  const topBtn = document.getElementById("backToTop");
-  window.addEventListener("scroll", () => {
-    topBtn.classList.toggle("show", window.scrollY > 500);
-  });
-  topBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-</script>
+                <!-- Branch -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h4>Branch Performance</h4>
+                    </div>
+                    <div id="salesByBranch"></div>
+                </div>
+
+                <!-- Product -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h4>Product Share</h4>
+                    </div>
+                    <div id="salesByProduct"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HIGHLIGHTS SECTION -->
+        <h2 class="section-title mt-5">Business Highlights</h2>
+        <div class="row g-4 mb-5">
+            <div class="col-md-3">
+                <div class="kpi-card text-center d-block p-4">
+                    <i class="bi bi-trophy text-warning fs-1 mb-3"></i>
+                    <small class="d-block text-secondary">Top Product</small>
+                    <h5 id="topProduct" class="mt-2">—</h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="kpi-card text-center d-block p-4">
+                    <i class="bi bi-geo-alt text-danger fs-1 mb-3"></i>
+                    <small class="d-block text-secondary">Best City</small>
+                    <h5 id="topCity" class="mt-2">—</h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="kpi-card text-center d-block p-4">
+                    <i class="bi bi-credit-card text-info fs-1 mb-3"></i>
+                    <small class="d-block text-secondary">Top Payment</small>
+                    <h5 id="topPayment" class="mt-2">—</h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="kpi-card text-center d-block p-4">
+                    <i class="bi bi-clock text-success fs-1 mb-3"></i>
+                    <small class="d-block text-secondary">Peak Time</small>
+                    <h5 id="peakHour" class="mt-2">—</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="portfolio-footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Retail Intelligence</h3>
+                    <p>Modern Business Intelligence & Predictive Analytics.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="bi bi-github"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                    <a href="#"><i class="bi bi-envelope"></i></a>
+                </div>
+            </div>
+            <hr>
+            <div class="footer-bottom">© 2026 Etim Antai • Retail Intelligence Portfolio</div>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="js/charts.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Hamburger Toggle Logic
+        const menuBtn = document.getElementById('menuBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const sideNav = document.getElementById('sideNav');
+        const overlay = document.getElementById('closeNav');
+
+        const toggleNav = () => {
+            sideNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+        };
+
+        menuBtn.addEventListener('click', toggleNav);
+        closeBtn.addEventListener('click', toggleNav);
+        overlay.addEventListener('click', toggleNav);
+    </script>
 </body>
 </html>
